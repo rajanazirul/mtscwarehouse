@@ -8,6 +8,7 @@
                 </a>
             </li>
 
+
             <li>
                 <a data-toggle="collapse" href="#dmform" {{ $section == 'dmform' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-bank" ></i>
@@ -19,17 +20,20 @@
                     <ul class="nav pl-4">
                        
                         <li @if ($pageSlug == 'dmform') class="active " @endif>
-                            <a href="">
+                        <a href="{{ route('dmform.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
                                 <p>All</p>
                             </a>
                         </li>
-                        <li @if ($pageSlug == 'onsites') class="active " @endif>
-                            <a href="{{ route('onsites.index')  }}">
-                                <i class="tim-icons icon-bag-16"></i>
-                                <p>Onsites</p>
+
+                        <li @if ($pageSlug == 'dmform') class="active " @endif>
+                            <a href="{{ route('dmform.create')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>New DM Form</p>
                             </a>
                         </li>
+
+                        
                     </ul>
                 </div>
             

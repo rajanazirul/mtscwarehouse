@@ -7,15 +7,15 @@ use Illuminate\Database\Eloquent\Model;
 class TakenProduct extends Model
 {
     protected $fillable = [
-        'onsite_id', 'product_id', 'qty'
+        'dmform_id', 'product_id', 'qty'
     ];
     
     public function product()
     {
         return $this->belongsTo('App\Product');
     }
-    public function onsite()
+    public function dmform()
     {
-        return $this->belongsTo('App\Onsite');
+        return $this->belongsTo('App\Dmform');
     }
 }

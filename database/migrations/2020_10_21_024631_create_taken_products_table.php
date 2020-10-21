@@ -15,12 +15,13 @@ class CreateTakenProductsTable extends Migration
     {
         Schema::create('taken_products', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('onsite_id');
+            $table->unsignedBigInteger('dmform_id');
             $table->unsignedBigInteger('product_id');
             $table->integer('qty');
             $table->timestamps();
-            $table->foreign('onsite_id')->references('id')->on('onsites')->onDelete('cascade');
+            $table->foreign('dmform_id')->references('id')->on('dmforms')->onDelete('cascade');
             $table->foreign('product_id')->references('id')->on('products');
+        
         });
     }
 

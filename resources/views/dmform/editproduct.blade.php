@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Edit Product', 'pageSlug' => 'onsites', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'Edit Product', 'pageSlug' => 'dmforms', 'section' => 'dmform'])
 
 @section('content')
         <div class="row">
@@ -10,22 +10,22 @@
                                 <h3 class="mb-0">Edit Product</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('onsites.show', $onsite) }}" class="btn btn-sm btn-primary">Back to List</a>
+                                <a href="{{ route('dmform.show', $dmform) }}" class="btn btn-sm btn-primary">Back to List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('onsites.product.update', ['onsite' => $onsite, 'takenproduct' => $takenproduct]) }}" autocomplete="off">
+                        <form method="post" action="{{ route('dmform.product.update', ['dmform' => $dmform, 'takenproduct' => $takenproduct]) }}" autocomplete="off">
                             @csrf
                             @method('put')
 
                             <div class="pl-lg-4">
-                                <input type="hidden" name="onsite_id" value="{{ $onsite->id }}">
+                                <input type="hidden" name="dmform_id" value="{{ $dmform->id }}">
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-product">Product</label>
                                     <select name="product_id" id="input-product" class="form-select form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" required>
                                         @foreach ($products as $product)
-                                            @if($product['id'] == old('product_id') or $product['id'] == $taken_product->product_id )
+                                            @if($product['id'] == old('product_id') or $product['id'] == $takenproduct->product_id )
                                                 <option value="{{$product['id']}}" selected>[{{ $product->category->name }}] {{ $product->name }}</option>
                                             @else
                                                 <option value="{{$product['id']}}">[{{ $product->category->name }}] {{ $product->name }}</option>

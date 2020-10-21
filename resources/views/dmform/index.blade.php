@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Onsites', 'pageSlug' => 'onsites', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'DM Form', 'pageSlug' => 'dmform', 'section' => 'dmform'])
 
 @section('content')
     @include('alerts.success')
@@ -8,10 +8,10 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">Onsites</h4>
+                            <h4 class="card-title">DM Form</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('onsites.create') }}" class="btn btn-sm btn-primary">Register Onsite Job</a>
+                            <a href="{{ route('dmform.create') }}" class="btn btn-sm btn-primary">New DM</a>
                         </div>
                     </div>
                 </div>
@@ -20,7 +20,7 @@
                         <table class="table">
                             <thead>
                                 <th>Date</th>
-                                <th>Customer</th>
+                                <!--<th>Customer</th>-->
                                 <th>User</th>
                                 <th>Products</th>
                                 <th>Total Stock</th>
@@ -28,34 +28,35 @@
                                 <th></th>
                             </thead>
                             <tbody>
-                                @foreach ($onsites as $onsite)
+                                @foreach ($dmforms as $dmform)
                                     <tr>
-                                        <td>{{ date('d-m-y', strtotime($onsite->created_at)) }}</td>
-                                        <td><a href="{{ route('customers.show', $onsite->customer) }}">{{ $onsite->customer->name }}<br>{{ $onsite->customer->companyname }}</a></td>
-                                        <td>{{ $onsite->user->name }}</td>
-                                        <td>{{ $onsite->products->count() }}</td>
-                                        <td>{{ $onsite->products->sum('qty') }}</td>
+                                        <td>{{ date('d-m-y', strtotime($dmform->created_at)) }}</td>
+                                       
+                                        <td>{{ $dmform->user->name }}</td>
+                                        <td>{{ $dmform->products->count() }}</td>
+                                        <td>{{ $dmform->products->sum('qty') }}</td>
+                                
                                         <td>
-                                            @if (!$onsite->finalized_at)
+                                            @if (!$dmform->finalized_at)
                                                 <span class="text-danger">To Finalize</span>
                                             @else
                                                 <span class="text-success">Finalized</span>
                                             @endif
                                         </td>
                                         <td class="td-actions text-right">
-                                            @if (!$onsite->finalized_at)
-                                                <a href="{{ route('onsites.show', ['onsite' => $onsite]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit onsite">
+                                            @if (!$dmform->finalized_at)
+                                                <a href="{{ route('dmform.show', ['dmform' => $dmform]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit dmform">
                                                     <i class="tim-icons icon-pencil"></i>
                                                 </a>
                                             @else
-                                                <a href="{{ route('onsites.show', ['onsite' => $onsite]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View onsite">
+                                                <a href="{{ route('dmform.show', ['dmform' => $dmform]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View dmform">
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
                                             @endif
-                                            <form action="{{ route('onsites.destroy', $onsite) }}" method="post" class="d-inline">
+                                            <form action="{{ route('dmform.destroy', $dmform) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
-                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete onsite" onclick="confirm('Are you sure you want to delete this onsite? All your records will be permanently deleted.') ? this.parentElement.submit() : ''">
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete dmform" onclick="confirm('Are you sure you want to delete this dmform? All your records will be permanently deleted.') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
@@ -68,7 +69,7 @@
                 </div>
                 <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ $onsites->links() }}
+                        {{ $dmforms->links() }}
                     </nav>
                 </div>
             </div>

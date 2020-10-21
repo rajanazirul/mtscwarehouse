@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Add Product', 'pageSlug' => 'onsites', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'Add Product', 'pageSlug' => 'dmform', 'section' => 'dmform'])
 
 @section('content')
         <div class="row">
@@ -10,16 +10,17 @@
                                 <h3 class="mb-0">Add Product</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('onsites.show', [$onsite->id]) }}" class="btn btn-sm btn-primary">Back to List</a>
+                                <a href="{{ route('dmform.show', [$dmform->id]) }}" class="btn btn-sm btn-primary">Back to List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('onsites.product.store', $onsite) }}" autocomplete="off">
+                        <form method="post" action="{{ route('dmform.product.store', $dmform) }}" autocomplete="off">
                             @csrf
 
                             <div class="pl-lg-4">
-                                <input type="hidden" name="onsite_id" value="{{ $onsite->id }}">
+                                <input type="hidden" name="dmform_id" value="{{ $dmform->id }}">
+                              
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-product">Product</label>
                                     <select name="product_id" id="input-product" class="form-select form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" required>

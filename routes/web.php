@@ -26,10 +26,19 @@ Route::group(['middleware' => 'auth'], function () {
         'inventory/categories' => 'ProductCategoryController',
         'customers' => 'CustomerController',
         'dmform/onsites' => 'OnsiteController',
+        'dmform' => 'DmformController',
+        'purposes' => 'PurposeController',
+       
       
     ]);
 
-   
+    Route::resource('dmform', 'DmformController')->except(['edit', 'update']);
+    Route::get('dmform/{dmform}/finalize', ['as' => 'dmform.finalize', 'uses' => 'DmformController@finalize']);
+    Route::get('dmform/{dmform}/product/add', ['as' => 'dmform.product.add', 'uses' => 'DmformController@addproduct']);
+    Route::get('dmform/{dmform}/product/{takenproduct}/edit', ['as' => 'dmform.product.edit', 'uses' => 'DmformController@editproduct']);
+    Route::post('dmform/{dmform}/product', ['as' => 'dmform.product.store', 'uses' => 'DmformController@storeproduct']);
+    Route::match(['put', 'patch'], 'dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.update', 'uses' => 'DmformController@updateproduct']);
+    Route::delete('dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.destroy', 'uses' => 'DmformController@destroyproduct']);
     
     Route::resource('onsites', 'OnsiteController')->except(['edit', 'update']);
     Route::get('onsites/{onsite}/finalize', ['as' => 'onsites.finalize', 'uses' => 'OnsiteController@finalize']);
