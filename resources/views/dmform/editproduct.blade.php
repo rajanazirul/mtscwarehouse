@@ -19,6 +19,8 @@
                             @csrf
                             @method('put')
 
+                            <div class="card-body">
+
                             <div class="pl-lg-4">
                                 <input type="hidden" name="dmform_id" value="{{ $dmform->id }}">
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
@@ -38,7 +40,7 @@
 
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-qty">Quantity</label>
-                                    <input type="number" name="qty" id="input-qty" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="{{ old('qty', $taken_product->qty) }}" required>
+                                    <input type="number" name="qty" id="input-qty" class="form-control form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" value="{{ old('qty', $takenproduct->qty) }}" required>
                                     @include('alerts.feedback', ['field' => 'product_id'])
                                 </div>
 

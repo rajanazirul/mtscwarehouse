@@ -20,7 +20,6 @@
 
                             <div class="pl-lg-4">
                                 <input type="hidden" name="dmform_id" value="{{ $dmform->id }}">
-                              
                                 <div class="form-group{{ $errors->has('product_id') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-product">Product</label>
                                     <select name="product_id" id="input-product" class="form-select form-control-alternative{{ $errors->has('product_id') ? ' is-invalid' : '' }}" required>

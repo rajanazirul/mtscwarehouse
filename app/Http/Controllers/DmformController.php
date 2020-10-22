@@ -148,22 +148,22 @@ class DmformController extends Controller
             ->withStatus('Product successfully registered.');
     }
 
-    public function editproduct(Dmform $dmform, TakenProduct $takenProduct)
+    public function editproduct(Dmform $dmform, TakenProduct $takenproduct)
     {
         $products = Product::all();
 
         return view('dmform.editproduct', compact('dmform', 'takenproduct', 'products'));
     }
 
-    public function updateproduct(Request $request, Dmform $dmform, TakenProduct $takenProduct)
+    public function updateproduct(Request $request, Dmform $dmform, TakenProduct $takenproduct)
     {
         
         $takenproduct->update($request->all());
 
-        return redirect()->route('dmform.show', $onsite)->withStatus('Product successfully modified.');
+        return redirect()->route('dmform.show', $dmform)->withStatus('Product successfully modified.');
     }
 
-    public function destroyproduct(Dmform $dmform, TakenProduct $takenProduct)
+    public function destroyproduct(Dmform $dmform, TakenProduct $takenproduct)
     {
         $takenproduct->delete();
 
