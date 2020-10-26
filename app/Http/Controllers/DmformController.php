@@ -125,7 +125,7 @@ class DmformController extends Controller
         $dmform->save();
        
 
-        return back()->withStatus('The dm has been successfully completed.');
+        return back()->withStatus('The DM has been successfully completed.');
     }
 
 

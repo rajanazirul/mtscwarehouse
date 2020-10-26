@@ -40,12 +40,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::match(['put', 'patch'], 'dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.update', 'uses' => 'DmformController@updateproduct']);
     Route::delete('dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.destroy', 'uses' => 'DmformController@destroyproduct']);
     
-    Route::resource('onsites', 'OnsiteController')->except(['edit', 'update']);
-    Route::get('onsites/{onsite}/finalize', ['as' => 'onsites.finalize', 'uses' => 'OnsiteController@finalize']);
-    Route::get('onsites/{onsite}/product/add', ['as' => 'onsites.product.add', 'uses' => 'OnsiteController@addproduct']);
-    Route::get('onsites/{onsite}/product/{takenproduct}/edit', ['as' => 'onsites.product.edit', 'uses' => 'OnsiteController@editproduct']);
-    Route::post('onsites/{onsite}/product', ['as' => 'onsites.product.store', 'uses' => 'OnsiteController@storeproduct']);
-    Route::delete('onsites/{onsite}/product/{takenproduct}', ['as' => 'onsites.product.destroy', 'uses' => 'OnsiteController@destroyproduct']);
+    
+    Route::resource('dmform/dmaddreturns', 'DmaddreturnController')->except(['edit', 'update']);
+    Route::get('dmform/dmaddreturns/{dmaddreturn}/finalize', ['as' => 'dmaddreturns.finalize', 'uses' => 'DmaddreturnController@finalize']);
+    Route::get('dmform/dmaddreturns/{dmaddreturn}/product/add', ['as' => 'dmaddreturns.product.add', 'uses' => 'DmaddreturnController@addproduct']);
+    Route::get('dmform/dmaddreturns/{dmaddreturn}/product/{addreturnproduct}/edit', ['as' => 'dmaddreturns.product.edit', 'uses' => 'DmaddreturnController@editproduct']);
+    Route::post('dmform/dmaddreturns/{dmaddreturn}/product', ['as' => 'dmaddreturns.product.store', 'uses' => 'DmaddreturnController@storeproduct']);
+    Route::match(['put', 'patch'], 'dmform/dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.update', 'uses' => 'DmaddreturnController@updateproduct']);
+    Route::delete('dmform/dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.destroy', 'uses' => 'DmaddreturnController@destroyproduct']);
 
 
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
