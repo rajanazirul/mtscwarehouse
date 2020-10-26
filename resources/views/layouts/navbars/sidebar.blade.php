@@ -26,10 +26,17 @@
                             </a>
                         </li>
 
+                        <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
+                            <a href="{{ route('dmaddreturns.create')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>Add/Return</p>
+                            </a>
+                        </li>
+
                         <li @if ($pageSlug == 'dmform') class="active " @endif>
                             <a href="{{ route('dmform.create')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>New DM Form</p>
+                                <p>Deduct/Issued</p>
                             </a>
                         </li>
 

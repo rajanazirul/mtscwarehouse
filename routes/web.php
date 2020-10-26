@@ -28,6 +28,8 @@ Route::group(['middleware' => 'auth'], function () {
         'dmform/onsites' => 'OnsiteController',
         'dmform' => 'DmformController',
         'purposes' => 'PurposeController',
+        'dmform/dmaddreturns' => 'DmaddreturnController',
+        
        
       
     ]);
