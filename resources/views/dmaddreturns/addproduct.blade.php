@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Add Product', 'pageSlug' => 'dmaddreturns', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'Add Product', 'pageSlug' => 'dmaddreturns', 'section' => 'dmaddreturns'])
 
 @section('content')
         <div class="row">

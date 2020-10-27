@@ -19,7 +19,7 @@ class DmaddreturnController extends Controller
     public function index()
     { $dmaddreturns = Dmaddreturn::paginate(25);
 
-        return view('dmform.dmaddreturns.index', compact('dmaddreturns'));
+        return view('dmaddreturns.index', compact('dmaddreturns'));
     }
 
     /**
@@ -31,7 +31,7 @@ class DmaddreturnController extends Controller
     {
         $purposes = Purpose::all();
 
-        return view('dmform.dmaddreturns.create', compact('purposes'));
+        return view('dmaddreturns.create', compact('purposes'));
     }
 
     /**
@@ -57,7 +57,7 @@ class DmaddreturnController extends Controller
      */
     public function show(Dmaddreturn $dmaddreturn)
     {
-        return view('dmform.dmaddreturns.show', compact('dmaddreturn'));
+        return view('dmaddreturns.show', compact('dmaddreturn'));
     }
 
     /**
@@ -126,7 +126,7 @@ class DmaddreturnController extends Controller
     {
         $products = Product::all();
 
-        return view('dmform.dmaddreturns.addproduct', compact('dmaddreturn', 'products'));
+        return view('dmaddreturns.addproduct', compact('dmaddreturn', 'products'));
     }
 
     /**
@@ -155,7 +155,7 @@ class DmaddreturnController extends Controller
     {
         $products = Product::all();
 
-        return view('dmform.dmaddreturns.editproduct', compact('dmaddreturn', 'addreturnproduct', 'products'));
+        return view('dmaddreturns.editproduct', compact('dmaddreturn', 'addreturnproduct', 'products'));
     }
 
     /**
@@ -188,5 +188,7 @@ class DmaddreturnController extends Controller
             ->route('dmaddreturns.show', $dmaddreturn)
             ->withStatus('Product removed successfully.');
     }
+
+    
 }
 

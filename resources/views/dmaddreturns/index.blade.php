@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Add Return Page', 'pageSlug' => 'dmaddreturns', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'DM Form', 'pageSlug' => 'dmaddreturns', 'section' => 'dmaddreturns'])
 
 @section('content')
     @include('alerts.success')
@@ -10,7 +10,7 @@
                         <h4 class="card-title">Add and Returns DM Form</h4>
                     </div>
                     <div class="col-4 text-right">
-                        <a href="{{ route('dmaddreturn.create') }}" class="btn btn-sm btn-primary">Add/Return DM</a>
+                        <a href="{{ route('dmaddreturns.create') }}" class="btn btn-sm btn-primary">Add/Return DM</a>
                     </div>
                 </div>
             </div>
@@ -51,7 +51,7 @@
                                         @endif
                                     </td>
                                     <td class="td-actions text-right">
-                                        @if($dmaddreturnt->finalized_at)
+                                        @if($dmaddreturn->finalized_at)
                                             <a href="{{ route('dmaddreturns.show', ['dmaddreturn' => $dmaddreturn]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
                                                 <i class="tim-icons icon-zoom-split"></i>
                                             </a>
@@ -76,7 +76,7 @@
             </div>
             <div class="card-footer py-4">
                 <nav class="d-flex justify-content-end" aria-label="...">
-                    {{ $receipts->links() }}
+                    {{ $dmaddreturns->links() }}
                 </nav>
             </div>
         </div>

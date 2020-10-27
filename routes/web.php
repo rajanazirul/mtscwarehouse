@@ -25,10 +25,11 @@ Route::group(['middleware' => 'auth'], function () {
         'inventory/products' => 'ProductController',
         'inventory/categories' => 'ProductCategoryController',
         'customers' => 'CustomerController',
-        'dmform/onsites' => 'OnsiteController',
         'dmform' => 'DmformController',
         'purposes' => 'PurposeController',
-        'dmform/dmaddreturns' => 'DmaddreturnController',
+        'dmaddreturns' => 'DmaddreturnController',
+
+      
         
        
       
@@ -43,13 +44,13 @@ Route::group(['middleware' => 'auth'], function () {
     Route::delete('dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.destroy', 'uses' => 'DmformController@destroyproduct']);
     
     
-    Route::resource('dmform/dmaddreturns', 'DmaddreturnController')->except(['edit', 'update']);
-    Route::get('dmform/dmaddreturns/{dmaddreturn}/finalize', ['as' => 'dmaddreturns.finalize', 'uses' => 'DmaddreturnController@finalize']);
-    Route::get('dmform/dmaddreturns/{dmaddreturn}/product/add', ['as' => 'dmaddreturns.product.add', 'uses' => 'DmaddreturnController@addproduct']);
-    Route::get('dmform/dmaddreturns/{dmaddreturn}/product/{addreturnproduct}/edit', ['as' => 'dmaddreturns.product.edit', 'uses' => 'DmaddreturnController@editproduct']);
-    Route::post('dmform/dmaddreturns/{dmaddreturn}/product', ['as' => 'dmaddreturns.product.store', 'uses' => 'DmaddreturnController@storeproduct']);
-    Route::match(['put', 'patch'], 'dmform/dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.update', 'uses' => 'DmaddreturnController@updateproduct']);
-    Route::delete('dmform/dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.destroy', 'uses' => 'DmaddreturnController@destroyproduct']);
+    Route::resource('dmaddreturns', 'DmaddreturnController')->except(['edit', 'update']);
+    Route::get('dmaddreturns/{dmaddreturn}/finalize', ['as' => 'dmaddreturns.finalize', 'uses' => 'DmaddreturnController@finalize']);
+    Route::get('dmaddreturns/{dmaddreturn}/product/add', ['as' => 'dmaddreturns.product.add', 'uses' => 'DmaddreturnController@addproduct']);
+    Route::get('dmaddreturns/{dmaddreturn}/product/{addreturnproduct}/edit', ['as' => 'dmaddreturns.product.edit', 'uses' => 'DmaddreturnController@editproduct']);
+    Route::post('dmaddreturns/{dmaddreturn}/product', ['as' => 'dmaddreturns.product.store', 'uses' => 'DmaddreturnController@storeproduct']);
+    Route::match(['put', 'patch'], 'dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.update', 'uses' => 'DmaddreturnController@updateproduct']);
+    Route::delete('dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.destroy', 'uses' => 'DmaddreturnController@destroyproduct']);
 
 
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);

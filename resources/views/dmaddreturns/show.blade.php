@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Manage Add/Return', 'pageSlug' => 'dmaddreturns', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'Manage Add/Return', 'pageSlug' => 'dmaddreturns', 'section' => 'dmaddreturns'])
 
 
 @section('content')

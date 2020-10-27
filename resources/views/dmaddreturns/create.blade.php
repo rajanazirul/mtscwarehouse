@@ -1,4 +1,4 @@
-@extends('layouts.app', ['page' => 'Add/Return DM', 'pageSlug' => 'dmaddreturns', 'section' => 'dmform'])
+@extends('layouts.app', ['page' => 'Add/Return DM', 'pageSlug' => 'dmaddreturns', 'section' => 'dmaddreturns'])
 
 @section('content')
     <div class="container-fluid mt--7">
