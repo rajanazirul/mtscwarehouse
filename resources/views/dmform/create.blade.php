@@ -36,7 +36,6 @@
                                     </select>
                                     @include('alerts.feedback', ['field' => 'purpose_id'])
                                 </div>
-
                               
                                
                                 <button type="submit" class="btn btn-success mt-4">Continue</button>

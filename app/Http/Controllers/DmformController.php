@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Purpose;
+use App\Customer;
+use App\AddCustomer;
 use App\Dmform;
 use App\Product;
 use Carbon\Carbon;
@@ -120,6 +122,8 @@ class DmformController extends Controller
             $taken_product->product->save();
         }
 
+      
+
         $dmform->finalized_at = Carbon::now()->toDateTimeString();
       
         $dmform->save();
@@ -168,6 +172,24 @@ class DmformController extends Controller
         $takenproduct->delete();
 
         return back()->withStatus('The product has been disposed of successfully.');
+    }
+
+    public function addcustomer(Dmform $dmform)
+    {
+        $customers = Customer::all();
+
+        return view('dmform.addcustomer', compact('dmform', 'customers'));
+    }
+
+    public function storecustomer(Request $request, Dmform $dmform, AddCustomer $addCustomer)
+    {
+
+
+        $addCustomer->create($request->all());
+
+        return redirect()
+            ->route('dmform.show', ['dmform' => $dmform])
+            ->withStatus('Customer successfully registered.');
     }
 
     

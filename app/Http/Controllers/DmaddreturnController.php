@@ -189,6 +189,25 @@ class DmaddreturnController extends Controller
             ->withStatus('Product removed successfully.');
     }
 
+    public function addcustomer(Dmaddreturn $dmaddreturn)
+    {
+        $customers = Customer::all();
+
+        return view('dmaddreturn.addcustomer', compact('dmform', 'customers'));
+    }
+
+    public function storecustomer(Request $request, Dmaddreturn $dmaddreturn, AddCustomer $addCustomer)
+    {
+
+
+        $addCustomer->create($request->all());
+
+        return redirect()
+            ->route('dmaddreturn.show', ['dmaddreturn' => $dmaddreturn])
+            ->withStatus('Customer successfully registered.');
+    }
+
+
     
 }
 

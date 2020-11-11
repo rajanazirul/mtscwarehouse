@@ -65,6 +65,39 @@
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
+                            <h4 class="card-title">Customer details</h4>
+                        </div>
+                        @if (!$dmform->finalized_at)
+                            <div class="col-4 text-right">
+                                <a href="{{ route('dmform.customer.add', ['dmform' => $dmform->id]) }}" class="btn btn-sm btn-primary">Add</a>
+                            </div>
+                        @endif
+                    </div>
+                </div>
+                <div class="card-body">
+                    <table class="table">
+                        <thead>
+                            <th>ID</th>
+                            <th>Name</th>
+                            <th>Company Name</th>
+                            <th></th>
+                        </thead>
+                        <tbody>
+                       
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div class="row">
+        <div class="col-md-12">
+            <div class="card">
+                <div class="card-header">
+                    <div class="row">
+                        <div class="col-8">
                             <h4 class="card-title">products: {{ $dmform->products->sum('qty') }}</h4>
                         </div>
                         @if (!$dmform->finalized_at)
