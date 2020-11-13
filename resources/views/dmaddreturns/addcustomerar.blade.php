@@ -10,12 +10,12 @@
                                 <h3 class="mb-0">Add Customer</h3>
                             </div>
                             <div class="col-4 text-right">
-                                <a href="{{ route('dmaddreturn.show', [$dmaddreturn->id]) }}" class="btn btn-sm btn-primary">Back to List</a>
+                                <a href="{{ route('dmaddreturns.show', [$dmaddreturn->id]) }}" class="btn btn-sm btn-primary">Back to List</a>
                             </div>
                         </div>
                     </div>
                     <div class="card-body">
-                        <form method="post" action="{{ route('dmaddreturn.customer.store', $dmaddreturn) }}" autocomplete="off">
+                        <form method="post" action="{{ route('dmaddreturns.customer.store', $dmaddreturn) }}" autocomplete="off">
                             @csrf
 
                             <div class="pl-lg-4">

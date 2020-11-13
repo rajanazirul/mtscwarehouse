@@ -6,6 +6,7 @@ use Illuminate\Database\Eloquent\Model;
 
 class AddCustomer extends Model
 {
+    //this is for deduct/returns customer dm form
     protected $fillable = [
         'dmform_id', 'customer_id'
     ];
@@ -19,10 +20,7 @@ class AddCustomer extends Model
         return $this->belongsTo('App\Dmform');
     }
 
-    public function dmaddreturn()
-    {
-        return $this->belongsTo('App\Dmaddreturn');
-    }
+   
 
     
 }

@@ -3,6 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Dmaddreturn;
+use App\AddCustomerar;
+use App\Customer;
 use App\Purpose;
 use App\Product;
 use Carbon\Carbon;
@@ -189,23 +191,31 @@ class DmaddreturnController extends Controller
             ->withStatus('Product removed successfully.');
     }
 
-    public function addcustomer(Dmaddreturn $dmaddreturn)
+  
+
+    public function addcustomerar(Dmaddreturn $dmaddreturn)
     {
         $customers = Customer::all();
 
-        return view('dmaddreturn.addcustomer', compact('dmform', 'customers'));
+        return view('dmaddreturns.addcustomerar', compact('dmaddreturn', 'customers'));
     }
 
-    public function storecustomer(Request $request, Dmaddreturn $dmaddreturn, AddCustomer $addCustomer)
+    /**
+     * Add customer on dmaddreturn.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  dmaddreturn  $dmaddreturn
+     * @return \Illuminate\Http\Response
+     */
+    public function storecustomerar(Request $request, Dmaddreturn $dmaddreturn, AddCustomerar $addCustomerar)
     {
-
-
-        $addCustomer->create($request->all());
+        $addCustomerar->create($request->all());
 
         return redirect()
-            ->route('dmaddreturn.show', ['dmaddreturn' => $dmaddreturn])
-            ->withStatus('Customer successfully registered.');
+            ->route('dmaddreturns.show', $dmaddreturn)
+            ->withStatus('Customer added successfully.');
     }
+
 
 
     

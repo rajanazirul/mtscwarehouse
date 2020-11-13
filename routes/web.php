@@ -52,6 +52,8 @@ Route::group(['middleware' => 'auth'], function () {
     Route::post('dmaddreturns/{dmaddreturn}/product', ['as' => 'dmaddreturns.product.store', 'uses' => 'DmaddreturnController@storeproduct']);
     Route::match(['put', 'patch'], 'dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.update', 'uses' => 'DmaddreturnController@updateproduct']);
     Route::delete('dmaddreturns/{dmaddreturn}/product/{addreturnproduct}', ['as' => 'dmaddreturns.product.destroy', 'uses' => 'DmaddreturnController@destroyproduct']);
+    Route::get('dmaddreturns/{dmaddreturn}/customer/add', ['as' => 'dmaddreturns.customer.add', 'uses' => 'DmaddreturnController@addcustomerar']);
+    Route::post('dmaddreturns/{dmaddreturn}/customer', ['as' => 'dmaddreturns.customer.store', 'uses' => 'DmaddreturnController@storecustomerar']);
     
 
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
