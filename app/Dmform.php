@@ -13,8 +13,8 @@ class Dmform extends Model
     public function purpose() {
         return $this->belongsTo('App\Purpose');
     }
-    public function customer() {
-        return $this->belongsTo('App\Customer');
+    public function customers() {
+        return $this->hasMany('App\AddCustomer');
     }
     public function products() {
         return $this->hasMany('App\TakenProduct');
@@ -22,5 +22,5 @@ class Dmform extends Model
     public function user() {
         return $this->belongsTo('App\User');
     }
-
+    
 }
