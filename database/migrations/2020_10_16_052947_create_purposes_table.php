@@ -15,7 +15,7 @@ class CreatePurposesTable extends Migration
     {
         Schema::create('purposes', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('name');
+            $table->string('purposename');
             $table->timestamps();
             $table->softDeletes();
         });

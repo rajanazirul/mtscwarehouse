@@ -39,9 +39,12 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dmform/{dmform}/finalize', ['as' => 'dmform.finalize', 'uses' => 'DmformController@finalize']);
     Route::get('dmform/{dmform}/product/add', ['as' => 'dmform.product.add', 'uses' => 'DmformController@addproduct']);
     Route::get('dmform/{dmform}/product/{takenproduct}/edit', ['as' => 'dmform.product.edit', 'uses' => 'DmformController@editproduct']);
+    Route::get('dmform/{dmform}/customer/{addcustomer}/edit', ['as' => 'dmform.customer.edit', 'uses' => 'DmformController@editcustomer']);
     Route::post('dmform/{dmform}/product', ['as' => 'dmform.product.store', 'uses' => 'DmformController@storeproduct']);
     Route::match(['put', 'patch'], 'dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.update', 'uses' => 'DmformController@updateproduct']);
+    Route::match(['put', 'patch'], 'dmform/{dmform}/customer/{addcustomer}', ['as' => 'dmform.customer.update', 'uses' => 'DmformController@updatecustomer']);
     Route::delete('dmform/{dmform}/product/{takenproduct}', ['as' => 'dmform.product.destroy', 'uses' => 'DmformController@destroyproduct']);
+    Route::delete('dmform/{dmform}/customer/{addcustomer}', ['as' => 'dmform.customer.destroy', 'uses' => 'DmformController@destroycustomer']);
     Route::get('dmform/{dmform}/customer/add', ['as' => 'dmform.customer.add', 'uses' => 'DmformController@addcustomer']);
     Route::post('dmform/{dmform}/customer', ['as' => 'dmform.customer.store', 'uses' => 'DmformController@storecustomer']);
     

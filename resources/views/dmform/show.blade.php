@@ -83,7 +83,27 @@
                             <th></th>
                         </thead>
                         <tbody>
-                       
+                            @foreach ($dmform->customers as $add_customer)
+                                <tr>
+                                <td>{{ $add_customer->customer->id }}</td>
+                                <td>{{ $add_customer->customer->name }}</td>
+                                <td>{{ $add_customer->customer->companyname }}</td>
+                                <td class="td-actions text-right">
+                                        @if(!$dmform->finalized_at)
+                                            <a href="{{ route('dmform.customer.edit', ['dmform' => $dmform, 'addcustomer' => $add_customer]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Details">
+                                                <i class="tim-icons icon-pencil"></i>
+                                            </a>
+                                            <form action="{{ route('dmform.customer.destroy', ['dmform' => $dmform, 'addcustomer' => $add_customer]) }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete details" onclick="confirm('Are you sure to delete this?') ? this.parentElement.submit() : ''">
+                                                    <i class="tim-icons icon-simple-remove"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

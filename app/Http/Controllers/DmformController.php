@@ -122,8 +122,6 @@ class DmformController extends Controller
             $taken_product->product->save();
         }
 
-      
-
         $dmform->finalized_at = Carbon::now()->toDateTimeString();
       
         $dmform->save();
@@ -179,6 +177,28 @@ class DmformController extends Controller
         $customers = Customer::all();
 
         return view('dmform.addcustomer', compact('dmform', 'customers'));
+    }
+
+    public function editcustomer(Dmform $dmform, AddCustomer $addcustomer)
+    {
+        $customers = Customer::all();
+
+        return view('dmform.editcustomer', compact('dmform', 'addcustomer', 'customers'));
+    }
+
+    public function updatecustomer(Request $request, Dmform $dmform, AddCustomer $addcustomer)
+    {
+        
+        $addcustomer->update($request->all());
+
+        return redirect()->route('dmform.show', $dmform)->withStatus('Customer successfully modified.');
+    }
+
+    public function destroycustomer(Dmform $dmform, AddCustomer $addcustomer)
+    {
+        $addcustomer->delete();
+
+        return back()->withStatus('The Customer has been disposed of successfully.');
     }
 
     public function storecustomer(Request $request, Dmform $dmform, AddCustomer $addCustomer)

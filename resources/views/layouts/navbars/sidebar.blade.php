@@ -71,6 +71,12 @@
                                 <p>Categoríes</p>
                             </a>
                         </li>
+                        <li @if ($pageSlug == 'purposes') class="active " @endif>
+                            <a href="{{ route('purposes.index') }}">
+                                <i class="tim-icons icon-tag"></i>
+                                <p>Purpose</p>
+                            </a>
+                        </li>
                         
                     </ul>
                 </div>
