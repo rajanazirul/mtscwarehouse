@@ -200,6 +200,28 @@ class DmaddreturnController extends Controller
         return view('dmaddreturns.addcustomerar', compact('dmaddreturn', 'customers'));
     }
 
+    public function editcustomerar(Dmaddreturn $dmaddreturn, AddCustomerar $addcustomerar)
+    {
+        $customers = Customer::all();
+
+        return view('dmaddreturns.editcustomerar', compact('dmaddreturn', 'addcustomerar', 'customers'));
+    }
+
+    public function updatecustomerar(Request $request, Dmaddreturn $dmaddreturn, AddCustomerar $addcustomerar)
+    {
+        
+        $addcustomerar->update($request->all());
+
+        return redirect()->route('dmaddreturns.show', $dmaddreturn)->withStatus('Customer successfully modified.');
+    }
+
+    public function destroycustomerar(Dmaddreturn $dmaddreturn, AddCustomerar $addcustomerar)
+    {
+        $addcustomerar->delete();
+
+        return back()->withStatus('The Customer has been disposed of successfully.');
+    }
+
     /**
      * Add customer on dmaddreturn.
      *
