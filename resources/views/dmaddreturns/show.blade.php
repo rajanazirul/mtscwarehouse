@@ -94,7 +94,27 @@
                             <th></th>
                         </thead>
                         <tbody>
-                       
+                            @foreach ($dmaddreturn->customers as $add_customerar)
+                                <tr>
+                                <td>{{ $add_customerar->customer->id }}</td>
+                                <td>{{ $add_customerar->customer->name }}</td>
+                                <td>{{ $add_customerar->customer->companyname }}</td>
+                                <td class="td-actions text-right">
+                                        @if(!$dmaddreturn->finalized_at)
+                                            <a href="{{ route('dmaddreturns.customer.edit', ['dmaddreturn' => $dmaddreturn, 'addcustomerar' => $add_customerar]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Details">
+                                                <i class="tim-icons icon-pencil"></i>
+                                            </a>
+                                            <form action="{{ route('dmaddreturns.customer.destroy', ['dmaddreturn' => $dmaddreturn, 'addcustomerar' => $add_customerar]) }}" method="post" class="d-inline">
+                                                @csrf
+                                                @method('delete')
+                                                <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete details" onclick="confirm('Are you sure to delete this?') ? this.parentElement.submit() : ''">
+                                                    <i class="tim-icons icon-simple-remove"></i>
+                                                </button>
+                                            </form>
+                                        @endif
+                                    </td>
+                                </tr>
+                            @endforeach
                         </tbody>
                     </table>
                 </div>

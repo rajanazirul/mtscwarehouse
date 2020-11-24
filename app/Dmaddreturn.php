@@ -13,17 +13,13 @@ class Dmaddreturn extends Model
     public function purpose() {
         return $this->belongsTo('App\Purpose');
     }
-    
+    public function customers() {
+        return $this->hasMany('App\AddCustomerar');
+    }
     public function products() {
         return $this->hasMany('App\AddreturnProduct');
     }
     public function user() {
         return $this->belongsTo('App\User');
     }
-
-    public function customer() {
-        return $this->belongsTo('App\Customer');
-    }
-
-
 }
