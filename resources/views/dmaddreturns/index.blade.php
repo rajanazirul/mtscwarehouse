@@ -2,10 +2,12 @@
 
 @section('content')
     @include('alerts.success')
-    <div class="row">
+    <div>
+    <div id = "dashboard" class="row">
         <div class="card ">
             <div class="card-header">
                 <div class="row">
+            <div class="row">
                     <div class="col-8">
                         <h4 class="card-title">Add and Returns DM Form</h4>
                     </div>
@@ -44,8 +46,10 @@
                                     <td>{{ $dmaddreturn->products->count() }}</td>
                                     <td>{{ $dmaddreturn->products->sum('stock') }}</td>
                                     <td>
-                                        @if($dmaddreturn->finalized_at)
-                                            FINALIZED
+                                        @if($dmaddreturn->status)
+                                            {{$dmaddreturn->status}}
+                                        @elseif($dmaddreturn->finalized_at)
+                                            <span style="color:red; font-weight:bold;">PASS</span>
                                         @else
                                             <span style="color:red; font-weight:bold;">TO FINALIZE</span>
                                         @endif
@@ -67,6 +71,7 @@
                                                 <i class="tim-icons icon-simple-remove"></i>
                                             </button>
                                         </form>
+                                        <mainapp></mainapp>
                                     </td>
                                 </tr>
                             @endforeach
@@ -74,6 +79,7 @@
                     </table>
                 </div>
             </div>
+            
             <div class="card-footer py-4">
                 <nav class="d-flex justify-content-end" aria-label="...">
                     {{ $dmaddreturns->links() }}
@@ -81,4 +87,7 @@
             </div>
         </div>
     </div>
+    <script src="{{mix('/js/app.js')}}"></script>
+    </div>
 @endsection
+

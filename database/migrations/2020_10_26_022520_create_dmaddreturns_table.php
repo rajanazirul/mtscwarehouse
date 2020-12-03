@@ -20,6 +20,7 @@ class CreateDmaddreturnsTable extends Migration
             $table->string('dono');
             $table->string('invno');
             $table->timestamp('finalized_at')->nullable();
+            $table->string('status')->nullable();
             $table->foreign('purpose_id')->references('id')->on('purposes');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();

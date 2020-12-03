@@ -28,11 +28,6 @@ Route::group(['middleware' => 'auth'], function () {
         'dmform' => 'DmformController',
         'purposes' => 'PurposeController',
         'dmaddreturns' => 'DmaddreturnController',
-
-      
-        
-       
-      
     ]);
 
     Route::resource('dmform', 'DmformController')->except(['edit', 'update']);
@@ -61,10 +56,17 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('dmaddreturns/{dmaddreturn}/customer/add', ['as' => 'dmaddreturns.customer.add', 'uses' => 'DmaddreturnController@addcustomerar']);
     Route::post('dmaddreturns/{dmaddreturn}/customer', ['as' => 'dmaddreturns.customer.store', 'uses' => 'DmaddreturnController@storecustomerar']);
     
-
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::match(['put', 'patch'], 'profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::match(['put', 'patch'], 'profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    
+    Route::post('dmaddreturns/create_tag', 'DashboardController@editTag');
+    //Route::get('dmaddreturns/get_tag', 'DashboardController@getStatus');
+
+    Route::any('{slug}', function(){
+        return view('dashboard');
+    });
+
 });
 
 Route::group(['middleware' => 'auth'], function () {

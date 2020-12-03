@@ -1,5 +1,5 @@
 @extends('layouts.app', ['pageSlug' => 'dashboard', 'page' => 'Dashboard', 'section' => ''])
-
+<mainapp></mainapp>
 @section('content')
     <div class="row">
         <div class="col-12">
@@ -40,51 +40,25 @@
             </div>
             </div>
             <div class="col-12">
-            <div class="card card-tasks">
+            <div id = "dashboard" class="card card-tasks">
                 <div class="card-header">
                 <div class="row">
-                        <div class="col-8">
-                            <h4 class="card-title">Latest DM Update</h4>
-                        </div>
-                        <div class="col-4 text-right">
-                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transactionModal">
-                                New DM form
-                            </button>
-                        </div>
+                    <div class="col-8">
+                        <h4 class="card-title">Latest DM Update</h4>
+                    </div>
+                    <div class="col-4 text-right">
+                        <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transactionModal">
+                            New DM form
+                        </button>
                     </div>
                 </div>
-                <div class="card-body">
-                    <div class="table-full-width table-responsive">
-                        <table class="table">
-                            <thead>
-                                <tr>
-                                    <th>
-                                        ID No.
-                                    </th>
-                                    <th>
-                                        Purpose
-                                    </th>
-                                    <th>
-                                        Add/Deduct
-                                    </th>
-                                    <th>
-                                        Status
-                                    </th>
-                                    <th>
-
-                                    </th>
-                                </tr>
-                            </thead>
-                            <tbody>
-
-                                
-                            </tbody>
-                        </table>
-                    </div>
                 </div>
+                <mainapp></mainapp>
             </div>
         </div>
     </div>
+    
+    <script src="{{mix('/js/app.js')}}"></script>
 
     <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
         <div class="modal-dialog" role="document">
@@ -119,6 +93,6 @@
         </div>
     </div>
 </div>
-       
-   
+
 @endsection
+
