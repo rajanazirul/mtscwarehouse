@@ -39,17 +39,18 @@
                                     @include('alerts.feedback', ['field' => 'purpose_id'])
                                 </div>
 
-                                <div class="form-group{{ $errors->has('dono') ? ' has-danger' : '' }}">
+                               <!--No need DO & INV-->
+                               <!-- <div class="form-group{{ $errors->has('dono') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-title">DO No.</label>
                                     <input type="text" name="dono" id="input-dono" class="form-control form-control-alternative{{ $errors->has('dono') ? ' is-invalid' : '' }}" placeholder="DO No." value="{{ old('dono') }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'dono'])
-                                </div>
+                                </div>-->
 
-                                <div class="form-group{{ $errors->has('invno') ? ' has-danger' : '' }}">
+                               <!-- <div class="form-group{{ $errors->has('invno') ? ' has-danger' : '' }}">
                                     <label class="form-control-label" for="input-invno">Invoice No.</label>
                                     <input type="text" name="invno" id="input-invno" class="form-control form-control-alternative{{ $errors->has('invno') ? ' is-invalid' : '' }}" placeholder="Invoice No." value="{{ old('invno') }}" required autofocus>
                                     @include('alerts.feedback', ['field' => 'invno'])
-                                </div>
+                                </div>-->
 
                                 <div class="text-center">
                                     <button type="submit" class="btn btn-success mt-4">Continue</button>

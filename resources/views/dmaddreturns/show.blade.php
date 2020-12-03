@@ -37,8 +37,6 @@
                             <th>ID</th>
                             <th>Date</th>
                             <th>Purpose</th>
-                            <th>DO No.</th>
-                            <th>Inv No.</th>
                             <th>User</th>
                             <th>Products</th>
                             <th>Stock</th>
@@ -55,8 +53,7 @@
                                         N/A
                                     @endif
                                 </td>
-                                <td style="max-width:150px;">{{ $dmaddreturn->dono}}</td>
-                                <td style="max-width:150px;">{{ $dmaddreturn->invno}}</td>
+                               
                                 <td>{{ $dmaddreturn->user->name }}</td>
                                 <td>{{ $dmaddreturn->products->count() }}</td>
                                 <td>{{ $dmaddreturn->products->sum('stock') }}</td>

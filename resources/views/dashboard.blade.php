@@ -1,56 +1,18 @@
 @extends('layouts.app', ['pageSlug' => 'dashboard', 'page' => 'Dashboard', 'section' => ''])
 
 @section('content')
-    <div class="row">
+<div class="row">
         <div class="col-12">
             <div class="card card-chart">
                 <div class="card-header ">
                     <div class="row">
                         <div class="col-sm-6 text-left">
-                            <h5 class="card-category">Latest Vistor</h5>
-                            <h2 class="card-title">Total visitor today</h2>
-                        </div>
-                        <div class="col-sm-6">
-                            <div class="btn-group btn-group-toggle float-right" data-toggle="buttons">
-                            <label class="btn btn-sm btn-primary btn-simple active" id="0">
-                                <input type="radio" name="options" checked>
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">DM List</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-single-02"></i>
-                                </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="1">
-                                <input type="radio" class="d-none d-sm-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Items</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-gift-2"></i>
-                                </span>
-                            </label>
-                            <label class="btn btn-sm btn-primary btn-simple" id="2">
-                                <input type="radio" class="d-none" name="options">
-                                <span class="d-none d-sm-block d-md-block d-lg-block d-xl-block">Visitors</span>
-                                <span class="d-block d-sm-none">
-                                    <i class="tim-icons icon-tap-02"></i>
-                                </span>
-                            </label>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            </div>
-            <div class="col-12">
-            <div class="card card-tasks">
-                <div class="card-header">
-                <div class="row">
-                        <div class="col-8">
-                            <h4 class="card-title">Latest DM Update</h4>
+                            <h4 class="card-title">DM FORMS : ADD/RETURN</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transactionModal">
-                                New DM form
-                            </button>
+                            
                         </div>
+                       
                     </div>
                 </div>
                 <div class="card-body">
@@ -59,25 +21,114 @@
                             <thead>
                                 <tr>
                                     <th>
-                                        ID No.
+                                        Date
                                     </th>
                                     <th>
                                         Purpose
                                     </th>
                                     <th>
-                                        Add/Deduct
+                                        Product
                                     </th>
                                     <th>
-                                        Status
+                                        Type
                                     </th>
+
+                                    
+
                                     <th>
 
                                     </th>
                                 </tr>
                             </thead>
                             <tbody>
+                            @foreach ($dmaddreturns as $dmaddreturn)
+                                <tr>
+                                    <td>{{ date('d-m-y', strtotime($dmaddreturn->created_at)) }}</td>
+                                    
+                                    <td>
+                                        @if($dmaddreturn->purpose_id)
+                                            <a href="{{ route('purposes.show', $dmaddreturn->purpose) }}">{{ $dmaddreturn->purpose->purposename }}</a>
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>{{ $dmaddreturn->products->count() }}</td>
+                                    <td>{{ $dmaddreturn->type }}</td>
+                                    
+                                    <td class="td-actions text-right">
+                                       
+                                            <a href="{{ route('dmaddreturns.show', ['dmaddreturn' => $dmaddreturn]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
+                                                <i class="tim-icons icon-zoom-split"></i>
+                                            </a>
+                                       
+                                    </td>
+                                </tr>
+                            @endforeach
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
 
-                                
+                <div class="card-header ">
+                    <div class="row">
+                        <div class="col-sm-6 text-left">
+                            <h4 class="card-title">DM FORMS : DEDUCT/ISSUED</h4>
+                        </div>
+                        <div class="col-4 text-right">
+                            
+                        </div>
+                       
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="table-full-width table-responsive">
+                        <table class="table">
+                            <thead>
+                                <tr>
+                                    <th>
+                                        Date
+                                    </th>
+                                    <th>
+                                        Purpose
+                                    </th>
+                                    <th>
+                                        Product
+                                    </th>
+                                    <th>
+                                        Type
+                                    </th>
+
+                                    
+
+                                    <th>
+
+                                    </th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                            @foreach ($dmforms as $dmform)
+                                <tr>
+                                    <td>{{ date('d-m-y', strtotime($dmform->created_at)) }}</td>
+                                    
+                                    <td>
+                                        @if($dmform->purpose_id)
+                                            <a href="{{ route('purposes.show', $dmform->purpose) }}">{{ $dmform->purpose->purposename }}</a>
+                                        @else
+                                            N/A
+                                        @endif
+                                    </td>
+                                    <td>{{ $dmform->products->count() }}</td>
+                                    <td>{{ $dmform->type }}</td>
+                                    
+                                    <td class="td-actions text-right">
+                                       
+                                            <a href="{{ route('dmform.show', ['dmform' => $dmform]) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="View">
+                                                <i class="tim-icons icon-zoom-split"></i>
+                                            </a>
+                                       
+                                    </td>
+                                </tr>
+                            @endforeach
                             </tbody>
                         </table>
                     </div>
@@ -85,40 +136,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
-        <div class="modal-dialog" role="document">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">New DM</h5>
-                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                    <span aria-hidden="true">&times;</span>
-                    </button>
-                </div>
-                <div class="modal-body">
-                   <div class="d-flex justify-content-between">
-                   <div class="row">
-                        <div class="col-15">
-                    <a href="" class="btn btn-sm btn-primary">On-site</a></a>
-                    <a href="" class="btn btn-sm btn-primary">Calibration</a>
-                    <a href="" class="btn btn-sm btn-primary">Consignment</a>
-                    <a href="" class="btn btn-sm btn-primary">Internal transfer</a>
-                    <a href="" class="btn btn-sm btn-primary">Assembly/In house repair</a>
-                    <a href="" class="btn btn-sm btn-primary">External repair</a>
-                    <a href="" class="btn btn-sm btn-primary">Sample</a>
-                    <a href="" class="btn btn-sm btn-primary">Rental/loan/Demo</a>
-                    <a href="" class="btn btn-sm btn-primary">PO status</a>
-                    <a href="" class="btn btn-sm btn-primary">Add NEW stock</a>
-                 
-                    </div>
-                        
-                    </div>
-                 </div>
-                </div>
-            </div>
-        </div>
-    </div>
-</div>
        
    
 @endsection

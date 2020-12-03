@@ -20,8 +20,6 @@
                         <thead>
                             <th>Date</th>
                             <th>Purpose</th>
-                            <th>DO No.</th>
-                            <th>Inv No.</th>
                             <th>Product</th>
                             <th>Stock</th>
                             <th>Status</th>
@@ -39,8 +37,6 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td style="max-width:150px">{{ $dmaddreturn->dono }}</td>
-                                    <td style="max-width:150px">{{ $dmaddreturn->invno }}</td>
                                     <td>{{ $dmaddreturn->products->count() }}</td>
                                     <td>{{ $dmaddreturn->products->sum('stock') }}</td>
                                     <td>

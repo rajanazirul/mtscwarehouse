@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateDmaddreturnsTable extends Migration
+class CreateDmformdetailsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,15 @@ class CreateDmaddreturnsTable extends Migration
      */
     public function up()
     {
-        Schema::create('dmaddreturns', function (Blueprint $table) {
+        Schema::create('dmformdetails', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->unsignedBigInteger('purpose_id')->nullable();
             $table->unsignedBigInteger('user_id');
+            $table->unsignedBigInteger('purpose_id');
             $table->timestamp('finalized_at')->nullable();
-            $table->foreign('purpose_id')->references('id')->on('purposes');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('purpose_id')->references('id')->on('purposes');
             $table->timestamps();
+            $table->string('type');
         });
     }
 
@@ -31,6 +32,6 @@ class CreateDmaddreturnsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('dmaddreturns');
+        Schema::dropIfExists('dmformdetails');
     }
 }
