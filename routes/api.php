@@ -25,12 +25,8 @@ Route::get('trigger', function() {
 
 Route::get('update/{id}', 'TriggerController@triggerUpdate');
 
-<<<<<<< Updated upstream
-Route::get('updateon/{id}', 'TriggerController@triggerUpdateOn');
-=======
 Route::get('updateon/{id}', 'TriggerController@triggerUpdateOn');
 
 Route::get('dmaddreturns/get_tag', 'DashboardController@getStatus');
 
 Route::get('dmform/getdeduct', 'DashboardController@getDeduct');
->>>>>>> Stashed changes

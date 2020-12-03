@@ -65,8 +65,6 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::match(['put', 'patch'], 'profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::match(['put', 'patch'], 'profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
-<<<<<<< Updated upstream
-=======
     
     Route::post('dmaddreturns/create_status', 'DashboardController@editStatus');
     Route::post('dmform/editdeduct', 'DashboardController@editDeduct');
@@ -75,7 +73,6 @@ Route::group(['middleware' => 'auth'], function () {
         return view('dashboard');
     });
 
->>>>>>> Stashed changes
 });
 
 Route::group(['middleware' => 'auth'], function () {

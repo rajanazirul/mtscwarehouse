@@ -2,10 +2,7 @@
 
 @section('content')
     @include('alerts.success')
-<<<<<<< Updated upstream
-=======
     <div>
->>>>>>> Stashed changes
     <div class="row">
         <div class="card ">
             <div class="card-header">
@@ -45,15 +42,10 @@
                                     </td>
                                     <td>{{ $dmaddreturn->user->name }}</td>
                                     <td>
-<<<<<<< Updated upstream
-                                        @if($dmaddreturn->finalized_at)
-                                            FINALIZED
-=======
                                         @if($dmaddreturn->status)
                                             {{$dmaddreturn->status}}
                                         @elseif($dmaddreturn->finalized_at)
                                             <span style="color:red; font-weight:bold;">PENDING ADMIN</span>
->>>>>>> Stashed changes
                                         @else
                                             <span style="color:red; font-weight:bold;">TO FINALIZE</span>
                                         @endif
@@ -89,8 +81,5 @@
             </div>
         </div>
     </div>
-<<<<<<< Updated upstream
-=======
     </div>
->>>>>>> Stashed changes
 @endsection
