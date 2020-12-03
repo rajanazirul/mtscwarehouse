@@ -6,7 +6,6 @@
     <div id = "dashboard" class="row">
         <div class="card ">
             <div class="card-header">
-                <div class="row">
             <div class="row">
                     <div class="col-8">
                         <h4 class="card-title">Add and Returns DM Form</h4>
