@@ -19,28 +19,33 @@
                     <div class="">
                         <table class="table">
                             <thead>
+                                <th>DM</th>
                                 <th>Date</th>
-                                <!--<th>Customer</th>-->
+                                <th>Purpose</th>
                                 <th>User</th>
-                                <th>Products</th>
-                                <th>Total Stock</th>
                                 <th>Status</th>
                                 <th></th>
                             </thead>
                             <tbody>
-                                @foreach ($dmforms as $dmform)
-                                    <tr>
+                                @foreach ($dmforms->sortByDesc('created_at') as $dmform)
+                                    <tr>    
+                                        <td>DM/20/00{{ $dmform->id }}</td>
                                         <td>{{ date('d-m-y', strtotime($dmform->created_at)) }}</td>
-                                       
-                                        <td>{{ $dmform->user->name }}</td>
-                                        <td>{{ $dmform->products->count() }}</td>
-                                        <td>{{ $dmform->products->sum('qty') }}</td>
-                                
                                         <td>
-                                            @if (!$dmform->finalized_at)
-                                                <span class="text-danger">To Finalize</span>
+                                        @if($dmform->purpose_id)
+                                            <a href="{{ route('purposes.show', $dmform->purpose) }}">{{ $dmform->purpose->purposename }}</a>
+                                        @else
+                                            N/A
+                                        @endif
+                                        </td>
+                                        <td>{{ $dmform->user->name }}</td>
+                                        <td>
+                                            @if($dmform->status)
+                                                {{$dmform->status}}
+                                            @elseif($dmform->finalized_at)
+                                                <span style="color:red; font-weight:bold;">PENDING ADMIN</span>
                                             @else
-                                                <span class="text-success">Finalized</span>
+                                                <span style="color:red; font-weight:bold;">TO FINALIZE</span>
                                             @endif
                                         </td>
                                         <td class="td-actions text-right">

@@ -4,13 +4,15 @@
 @section('content')
     @include('alerts.success')
     @include('alerts.error')
-    <div class="row">
+    <div id = "dashboard" class="row">
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">DM Summary</h4>
+                            <h3 class="card-title">DM SUMMARY</h3>
+                            <h4 class="card-title">DM/20/00{{$dmaddreturn->id}}</h4>
+                            <mainapp></mainapp>
                         </div>
                         @if (!$dmaddreturn->finalized_at)
                             <div class="col-4 text-right">
@@ -34,19 +36,15 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <th>ID</th>
                             <th>Date</th>
                             <th>Purpose</th>
                             <th>DO No.</th>
                             <th>Inv No.</th>
                             <th>User</th>
-                            <th>Products</th>
-                            <th>Stock</th>
                             <th>Status</th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ $dmaddreturn->id }}</td>
                                 <td>{{ date('d-m-y', strtotime($dmaddreturn->created_at)) }}</td>
                                 <td>
                                     @if($dmaddreturn->purpose_id)
@@ -58,18 +56,23 @@
                                 <td style="max-width:150px;">{{ $dmaddreturn->dono}}</td>
                                 <td style="max-width:150px;">{{ $dmaddreturn->invno}}</td>
                                 <td>{{ $dmaddreturn->user->name }}</td>
-                                <td>{{ $dmaddreturn->products->count() }}</td>
-                                <td>{{ $dmaddreturn->products->sum('stock') }}</td>
-                                <td>{!! $dmaddreturn->finalized_at ? 'Finalized' : '<span style="color:red; font-weight:bold;">TO FINALIZE</span>' !!}</td>
+                                <td>    
+                                    @if($dmaddreturn->status)
+                                        {{$dmaddreturn->status}}
+                                    @elseif($dmaddreturn->finalized_at)
+                                        <span style="color:red; font-weight:bold;">PENDING ADMIN</span>
+                                    @else
+                                        <span style="color:red; font-weight:bold;">TO FINALIZE</span>
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
                     </table>
                 </div>
-
             </div>
         </div>
     </div>
-
+    
     <div class="row">
         <div class="col-md-12">
             <div class="card">
@@ -88,7 +91,6 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <th>ID</th>
                             <th>Name</th>
                             <th>Company Name</th>
                             <th></th>
@@ -96,7 +98,6 @@
                         <tbody>
                             @foreach ($dmaddreturn->customers as $add_customerar)
                                 <tr>
-                                <td>{{ $add_customerar->customer->id }}</td>
                                 <td>{{ $add_customerar->customer->name }}</td>
                                 <td>{{ $add_customerar->customer->companyname }}</td>
                                 <td class="td-actions text-right">
@@ -172,9 +173,9 @@
                 </div>
             </div>
         </div>
-    </div>
+        <script src="{{mix('/js/app.js')}}"></script>
+    </div> 
 @endsection
 
-@push('js')
-    <script src="{{ asset('assets') }}/js/sweetalerts2.js"></script>
-@endpush
+
+

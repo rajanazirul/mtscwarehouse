@@ -18,13 +18,6 @@
 
                 <div class="collapse {{ $section == 'dmform' ? 'show' : '' }}" id="dmform">
                     <ul class="nav pl-4">
-                       
-                        <li @if ($pageSlug == 'dmform') class="active " @endif>
-                        <a href="{{ route('dmform.index')  }}">
-                                <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>All</p>
-                            </a>
-                        </li>
 
                         <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
                             <a href="{{ route('dmaddreturns.index')  }}">
@@ -53,12 +46,6 @@
 
                 <div class="collapse {{ $section == 'inventory' ? 'show' : '' }}" id="inventory">
                     <ul class="nav pl-4">
-                        <li @if ($pageSlug == 'istats') class="active " @endif>
-                            <a href="">
-                                <i class="tim-icons icon-chart-pie-36"></i>
-                                <p>Statistics</p>
-                            </a>
-                        </li>
                         <li @if ($pageSlug == 'products') class="active " @endif>
                             <a href="{{ route('products.index') }}">
                                 <i class="tim-icons icon-notes"></i>

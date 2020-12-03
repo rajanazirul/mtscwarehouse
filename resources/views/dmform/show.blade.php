@@ -3,13 +3,15 @@
 @section('content')
     @include('alerts.success')
     @include('alerts.error')
-    <div class="row">
+    <div id="dashboard" class="row">
         <div class="col-md-12">
             <div class="card ">
                 <div class="card-header">
                     <div class="row">
                         <div class="col-8">
-                            <h4 class="card-title">DM Summary</h4>
+                            <h3 class="card-title">DM SUMMARY</h3>
+                            <h4 class="card-title">DM/20/00{{$dmform->id}}</h4>
+                            <mainapp></mainapp>
                         </div>
                         @if (!$dmform->finalized_at)
                             <div class="col-4 text-right">
@@ -18,7 +20,7 @@
                                         @csrf
                                         @method('delete')
                                         <button type="submit" class="btn btn-sm btn-primary">
-                                            Delete Purpose
+                                            Delete DM
                                         </button>
                                     </form>
                                 @else
@@ -33,23 +35,25 @@
                 <div class="card-body">
                     <table class="table">
                         <thead>
-                            <th>ID</th>
                             <th>Date</th>
-                            <th>User</th>
                             <th>Purpose</th>
-                            <th>Products</th>
-                            <th>Total Stock</th>
+                            <th>User</th>
                             <th>Status</th>
                         </thead>
                         <tbody>
                             <tr>
-                                <td>{{ $dmform->id }}</td>
                                 <td>{{ date('d-m-y', strtotime($dmform->created_at)) }}</td>
-                                <td>{{ $dmform->user->name }}</td>
                                 <td>{{ $dmform->purpose->purposename }}</a></td>
-                                <td>{{ $dmform->products->count() }}</td>
-                                <td>{{ $dmform->products->sum('qty') }}</td>
-                                <td>{!! $dmform->finalized_at ? 'Completed at<br>'.date('d-m-y', strtotime($dmform->finalized_at)) : (($dmform->products->count() > 0) ? 'TO FINALIZE' : 'ON HOLD') !!}</td>
+                                <td>{{ $dmform->user->name }}</td>
+                                <td>
+                                    @if($dmform->status)
+                                        {{$dmform->status}}
+                                    @elseif($dmform->finalized_at)
+                                        <span style="color:red; font-weight:bold;">PENDING ADMIN</span>
+                                    @else
+                                        <span style="color:red; font-weight:bold;">TO FINALIZE</span>
+                                    @endif
+                                </td>
                             </tr>
                         </tbody>
                     </table>
@@ -164,11 +168,6 @@
                 </div>
             </div>
         </div>
+        <script src="{{mix('/js/app.js')}}"></script>
     </div>
-
-  
 @endsection
-
-@push('js')
-    <script src="{{ asset('assets') }}/js/sweetalerts2.js"></script>
-@endpush

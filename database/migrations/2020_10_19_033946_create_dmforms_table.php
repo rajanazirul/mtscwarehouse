@@ -18,6 +18,7 @@ class CreateDmformsTable extends Migration
             $table->unsignedBigInteger('user_id');
             $table->unsignedBigInteger('purpose_id');
             $table->timestamp('finalized_at')->nullable();
+            $table->string('status')->nullable();
             $table->integer('total_qty')->nullable();
             $table->foreign('user_id')->references('id')->on('users');
             $table->foreign('purpose_id')->references('id')->on('purposes');

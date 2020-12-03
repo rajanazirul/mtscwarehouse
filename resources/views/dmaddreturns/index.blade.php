@@ -2,6 +2,10 @@
 
 @section('content')
     @include('alerts.success')
+<<<<<<< Updated upstream
+=======
+    <div>
+>>>>>>> Stashed changes
     <div class="row">
         <div class="card ">
             <div class="card-header">
@@ -18,18 +22,18 @@
                 <div class="">
                     <table class="table">
                         <thead>
+                            <th>DM</th>
                             <th>Date</th>
                             <th>Purpose</th>
-                            <th>DO No.</th>
-                            <th>Inv No.</th>
-                            <th>Product</th>
-                            <th>Stock</th>
+                            <th>User</th>
                             <th>Status</th>
                             <th></th>
                         </thead>
                         <tbody>
-                            @foreach ($dmaddreturns as $dmaddreturn)
+                            @foreach ($dmaddreturns->sortByDesc('created_at') as $dmaddreturn)
                                 <tr>
+                                    <td>DM/20/A00{{$dmaddreturn->id}}</td>
+
                                     <td>{{ date('d-m-y', strtotime($dmaddreturn->created_at)) }}</td>
                                     
                                     <td>
@@ -39,13 +43,17 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td style="max-width:150px">{{ $dmaddreturn->dono }}</td>
-                                    <td style="max-width:150px">{{ $dmaddreturn->invno }}</td>
-                                    <td>{{ $dmaddreturn->products->count() }}</td>
-                                    <td>{{ $dmaddreturn->products->sum('stock') }}</td>
+                                    <td>{{ $dmaddreturn->user->name }}</td>
                                     <td>
+<<<<<<< Updated upstream
                                         @if($dmaddreturn->finalized_at)
                                             FINALIZED
+=======
+                                        @if($dmaddreturn->status)
+                                            {{$dmaddreturn->status}}
+                                        @elseif($dmaddreturn->finalized_at)
+                                            <span style="color:red; font-weight:bold;">PENDING ADMIN</span>
+>>>>>>> Stashed changes
                                         @else
                                             <span style="color:red; font-weight:bold;">TO FINALIZE</span>
                                         @endif
@@ -81,4 +89,8 @@
             </div>
         </div>
     </div>
+<<<<<<< Updated upstream
+=======
+    </div>
+>>>>>>> Stashed changes
 @endsection
