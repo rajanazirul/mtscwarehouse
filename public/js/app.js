@@ -1953,6 +1953,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
@@ -2324,6 +2329,11 @@ function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try
 
 function _asyncToGenerator(fn) { return function () { var self = this, args = arguments; return new Promise(function (resolve, reject) { var gen = fn.apply(self, args); function _next(value) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "next", value); } function _throw(err) { asyncGeneratorStep(gen, resolve, reject, _next, _throw, "throw", err); } _next(undefined); }); }; }
 
+//
+//
+//
+//
+//
 //
 //
 //
@@ -67249,7 +67259,9 @@ var render = function() {
                   _vm._v(" "),
                   tag.status !== null
                     ? _c("td", [_vm._v(_vm._s(tag.status))])
-                    : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(1, true)
                 ])
               : _vm._e()
           }),
@@ -67272,6 +67284,26 @@ var staticRenderFns = [
       _c("th", [_vm._v("Status")]),
       _vm._v(" "),
       _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "td-actions text-right" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-link",
+          attrs: {
+            href: "dmform",
+            "data-toggle": "tooltip",
+            "data-placement": "bottom",
+            title: "Ver Receipt"
+          }
+        },
+        [_c("i", { staticClass: "tim-icons icon-pencil" })]
+      )
     ])
   }
 ]
@@ -67538,7 +67570,9 @@ var render = function() {
                   _vm._v(" "),
                   tag.status !== null
                     ? _c("td", [_vm._v(_vm._s(tag.status))])
-                    : _vm._e()
+                    : _vm._e(),
+                  _vm._v(" "),
+                  _vm._m(1, true)
                 ])
               : _vm._e()
           }),
@@ -67561,6 +67595,26 @@ var staticRenderFns = [
       _c("th", [_vm._v("Status")]),
       _vm._v(" "),
       _c("th")
+    ])
+  },
+  function() {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("td", { staticClass: "td-actions text-right" }, [
+      _c(
+        "a",
+        {
+          staticClass: "btn btn-link",
+          attrs: {
+            href: "dmaddreturns",
+            "data-toggle": "tooltip",
+            "data-placement": "bottom",
+            title: "Ver Receipt"
+          }
+        },
+        [_c("i", { staticClass: "tim-icons icon-pencil" })]
+      )
     ])
   }
 ]

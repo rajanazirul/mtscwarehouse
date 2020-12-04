@@ -10,14 +10,14 @@
 
 
             <li>
-                <a data-toggle="collapse" href="#dmform" {{ $section == 'dmform' ? 'aria-expanded=true' : '' }}>
+                <!--<a data-toggle="collapse" href="#dmform" {{ $section == 'dmform' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-bank" ></i>
                     <span class="nav-link-text">DM Forms</span>
                     <b class="caret mt-1"></b>
                 </a>
 
                 <div class="collapse {{ $section == 'dmform' ? 'show' : '' }}" id="dmform">
-                    <ul class="nav pl-4">
+                    <ul class="nav pl-4">-->
 
                         <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
                             <a href="{{ route('dmaddreturns.index')  }}">
@@ -32,10 +32,9 @@
                                 <p>DEDUCT/ISSUED PARTS</p>
                             </a>
                         </li>
-
                         
-                    </ul>
-                </div>
+                    <!--</ul>
+                </div>-->
             
             <li>
                 <a data-toggle="collapse" href="#inventory" {{ $section == 'inventory' ? 'aria-expanded=true' : '' }}>

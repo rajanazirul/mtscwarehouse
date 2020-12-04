@@ -15,6 +15,11 @@
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
                     <td v-if="tag.status !== null">{{tag.status}}</td>
+                    <td class="td-actions text-right">
+                        <a href="dmform" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
+                            <i class="tim-icons icon-pencil"></i>
+                        </a>
+                    </td>
                 </tr> 
             </tbody>
         </table>
