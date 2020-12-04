@@ -65,6 +65,14 @@ Route::group(['middleware' => 'auth'], function () {
     Route::get('profile', ['as' => 'profile.edit', 'uses' => 'ProfileController@edit']);
     Route::match(['put', 'patch'], 'profile', ['as' => 'profile.update', 'uses' => 'ProfileController@update']);
     Route::match(['put', 'patch'], 'profile/password', ['as' => 'profile.password', 'uses' => 'ProfileController@password']);
+    
+    Route::post('dmaddreturns/create_status', 'DashboardController@editStatus');
+    Route::post('dmform/editdeduct', 'DashboardController@editDeduct');
+
+    Route::any('{slug}', function(){
+        return view('dashboard');
+    });
+
 });
 
 Route::group(['middleware' => 'auth'], function () {

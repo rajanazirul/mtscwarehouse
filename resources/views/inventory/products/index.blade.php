@@ -10,7 +10,7 @@
                             <h4 class="card-title">Products</h4>
                         </div>
                         <div class="col-4 text-right">
-                            <a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">New product</a>
+                            <!--<a href="{{ route('products.create') }}" class="btn btn-sm btn-primary">New product</a>-->
                         </div>
                     </div>
                 </div>
@@ -33,7 +33,7 @@
                                         <td>{{ $product->name }}</td>
                                         <td>{{ $product->description }}</td>
                                         <td>{{ $product->stock }}</td>
-                                        <td class="td-actions text-right">
+                                        <!--<td class="td-actions text-right">
                                            
                                             <a href="{{ route('products.edit', $product) }}" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Edit Product">
                                                 <i class="tim-icons icon-pencil"></i>
@@ -45,7 +45,7 @@
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
                                             </form>
-                                        </td>
+                                        </td>-->
                                     </tr>
                                 @endforeach
                             </tbody>

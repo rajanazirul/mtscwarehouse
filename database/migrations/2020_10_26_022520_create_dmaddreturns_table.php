@@ -17,9 +17,10 @@ class CreateDmaddreturnsTable extends Migration
             $table->bigIncrements('id');
             $table->unsignedBigInteger('purpose_id')->nullable();
             $table->unsignedBigInteger('user_id');
-            $table->string('dono');
-            $table->string('invno');
+            $table->string('dono')->nullable();
+            $table->string('invno')->nullable();
             $table->timestamp('finalized_at')->nullable();
+            $table->string('status')->nullable();
             $table->foreign('purpose_id')->references('id')->on('purposes');
             $table->foreign('user_id')->references('id')->on('users');
             $table->timestamps();
