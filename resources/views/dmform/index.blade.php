@@ -58,13 +58,13 @@
                                                     <i class="tim-icons icon-zoom-split"></i>
                                                 </a>
                                             @endif
-                                            <form action="{{ route('dmform.destroy', $dmform) }}" method="post" class="d-inline">
+                                            <!--<form action="{{ route('dmform.destroy', $dmform) }}" method="post" class="d-inline">
                                                 @csrf
                                                 @method('delete')
                                                 <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete dmform" onclick="confirm('Are you sure you want to delete this dmform? All your records will be permanently deleted.') ? this.parentElement.submit() : ''">
                                                     <i class="tim-icons icon-simple-remove"></i>
                                                 </button>
-                                            </form>
+                                            </form>-->
                                         </td>
                                     </tr>
                                 @endforeach

@@ -22,14 +22,14 @@
                         <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
                             <a href="{{ route('dmaddreturns.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>Add/Return</p>
+                                <p>ADD/RETURN PARTS</p>
                             </a>
                         </li>
 
                         <li @if ($pageSlug == 'dmform') class="active " @endif>
                             <a href="{{ route('dmform.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>Deduct/Issued</p>
+                                <p>DEDUCT/ISSUED PARTS</p>
                             </a>
                         </li>
 
@@ -52,7 +52,7 @@
                                 <p>Products</p>
                             </a>
                         </li>
-                        <li @if ($pageSlug == 'categories') class="active " @endif>
+                        <!--<li @if ($pageSlug == 'categories') class="active " @endif>
                             <a href="{{ route('categories.index') }}">
                                 <i class="tim-icons icon-tag"></i>
                                 <p>Categoríes</p>
@@ -63,18 +63,18 @@
                                 <i class="tim-icons icon-tag"></i>
                                 <p>Purpose</p>
                             </a>
-                        </li>
+                        </li>-->
                         
                     </ul>
                 </div>
             </li>
 
-            <li @if ($pageSlug == 'customers') class="active " @endif>
+            <!--<li @if ($pageSlug == 'customers') class="active " @endif>
                 <a href="{{ route('customers.index') }}">
                     <i class="tim-icons icon-single-02"></i>
                     <p>Customers</p>
                 </a>
-            </li>
+            </li>-->
 
             
 

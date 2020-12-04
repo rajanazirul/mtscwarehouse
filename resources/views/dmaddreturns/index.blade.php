@@ -60,13 +60,13 @@
                                                 <i class="tim-icons icon-pencil"></i>
                                             </a>
                                         @endif
-                                        <form action="{{ route('dmaddreturns.destroy', $dmaddreturn) }}" method="post" class="d-inline">
+                                        <!--<form action="{{ route('dmaddreturns.destroy', $dmaddreturn) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete DM" onclick="confirm('Are you confirm to delete this?') ? this.parentElement.submit() : ''">
                                                 <i class="tim-icons icon-simple-remove"></i>
                                             </button>
-                                        </form>
+                                        </form>-->
                                     </td>
                                 </tr>
                             @endforeach
