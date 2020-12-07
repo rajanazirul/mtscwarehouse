@@ -19,24 +19,24 @@
                 <div class="collapse {{ $section == 'dmform' ? 'show' : '' }}" id="dmform">
                     <ul class="nav pl-4">-->
 
-                        <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
-                            <a href="{{ route('dmaddreturns.index')  }}">
-                                <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>ADD/RETURN PARTS</p>
-                            </a>
-                        </li>
-
                         <li @if ($pageSlug == 'dmform') class="active " @endif>
                             <a href="{{ route('dmform.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>DEDUCT/ISSUED PARTS</p>
+                                <p>ISSUED PARTS</p>
+                            </a>
+                        </li>
+
+                        <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
+                            <a href="{{ route('dmaddreturns.index')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>RETURN PARTS</p>
                             </a>
                         </li>
                         
                     <!--</ul>
                 </div>-->
             
-            <li>
+        <!--<li>
                 <a data-toggle="collapse" href="#inventory" {{ $section == 'inventory' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-app"></i>
                     <span class="nav-link-text">Inventory</span>
@@ -44,7 +44,7 @@
                 </a>
 
                 <div class="collapse {{ $section == 'inventory' ? 'show' : '' }}" id="inventory">
-                    <ul class="nav pl-4">
+                    <ul class="nav pl-4">-->
                         <li @if ($pageSlug == 'products') class="active " @endif>
                             <a href="{{ route('products.index') }}">
                                 <i class="tim-icons icon-notes"></i>
@@ -64,9 +64,9 @@
                             </a>
                         </li>-->
                         
-                    </ul>
+                    <!--</ul>
                 </div>
-            </li>
+            </li>-->
 
             <!--<li @if ($pageSlug == 'customers') class="active " @endif>
                 <a href="{{ route('customers.index') }}">
