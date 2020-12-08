@@ -31,7 +31,7 @@
                         </a>
                     </td>
                 </tr>
-                <tr v-for="(tag, i) in units" :key="i" v-if="units.length" >
+                <tr v-for="(tag, i) in orderId" :key="i" v-if="units.length > 0" >
                     <td>DM/20/D00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
@@ -65,7 +65,10 @@ export default {
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'id').reverse()
+            return _.orderBy(this.tags.data, 'finalized_at').reverse()
+        },
+        orderId: function(){
+            return _.orderBy(this.units, 'finalized_at').reverse()
         }
     },
 

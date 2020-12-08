@@ -1991,7 +1991,10 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
   },
   computed: {
     orderTags: function orderTags() {
-      return _.orderBy(this.tags.data, 'id').reverse();
+      return _.orderBy(this.tags.data, 'finalized_at').reverse();
+    },
+    orderId: function orderId() {
+      return _.orderBy(this.units, 'finalized_at').reverse();
     }
   },
   methods: {
@@ -67382,8 +67385,8 @@ var render = function() {
                   : _vm._e()
               }),
               _vm._v(" "),
-              _vm._l(_vm.units, function(tag, i) {
-                return _vm.units.length
+              _vm._l(_vm.orderId, function(tag, i) {
+                return _vm.units.length > 0
                   ? _c("tr", { key: i }, [
                       _c("td", [_vm._v("DM/20/D00" + _vm._s(tag.id))]),
                       _vm._v(" "),

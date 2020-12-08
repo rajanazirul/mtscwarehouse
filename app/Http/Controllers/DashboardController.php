@@ -9,11 +9,11 @@ use App\Dmform;
 class DashboardController extends Controller
 {
     public function getStatus(Request $request){
-        return Dmaddreturn::paginate(5);
+        return Dmaddreturn::paginate(10);
     }
 
     public function getDeduct(Request $request){
-        return Dmform::paginate(5);
+        return Dmform::paginate(10);
     }
     
     public function searchDmform(Request $request)
