@@ -12,8 +12,32 @@ class DashboardController extends Controller
         return Dmaddreturn::paginate(10);
     }
 
+    public function editStatus(Request $request)
+    {
+        // validate request
+        $this->validate($request, [
+            'status' => 'required',
+            'id' => 'required',
+        ]);
+        return Dmaddreturn::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+    }
+
     public function getDeduct(Request $request){
         return Dmform::paginate(10);
+    }
+
+    public function editDeduct(Request $request)
+    {
+        // validate request
+        $this->validate($request, [
+            'status' => 'required',
+            'id' => 'required',
+        ]);
+        return Dmform::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
     }
     
     public function searchDmform(Request $request)
@@ -33,5 +57,5 @@ class DashboardController extends Controller
 
     	return response()->json($unit);
     }
-
+    
 }
