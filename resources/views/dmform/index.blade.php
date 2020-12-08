@@ -29,7 +29,7 @@
                             <tbody>
                                 @foreach ($dmforms->sortByDesc('created_at') as $dmform)
                                     <tr>    
-                                        <td>DM/20/00{{ $dmform->id }}</td>
+                                        <td>DM/20/D00{{ $dmform->id }}</td>
                                         <td>{{ date('d-m-y', strtotime($dmform->created_at)) }}</td>
                                         <td>
                                         @if($dmform->purpose_id)

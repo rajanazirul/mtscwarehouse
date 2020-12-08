@@ -1958,19 +1958,53 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      units: [],
+      search: '',
       tags: []
     };
   },
   computed: {
     orderTags: function orderTags() {
-      return _.orderBy(this.tags, 'id').reverse();
+      return _.orderBy(this.tags.data, 'id').reverse();
     }
   },
+  methods: {
+    searchUnit: _.debounce(function () {
+      var _this = this;
+
+      axios.get('/api/search_dmform?id=' + this.search).then(function (response) {
+        _this.units = response.data;
+      });
+    })
+  },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var res;
@@ -1979,15 +2013,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.callApi('get', '/api/dmform/getdeduct');
+              return _this2.callApi('get', '/api/dmform/getdeduct');
 
             case 2:
               res = _context.sent;
 
               if (res.status == 200) {
-                _this.tags = res.data;
+                _this2.tags = res.data;
               } else {
-                _this.swr();
+                _this2.swr();
               }
 
             case 4:
@@ -2359,19 +2393,52 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   data: function data() {
     return {
+      units: [],
+      search: '',
       tags: []
     };
   },
   computed: {
     orderTags: function orderTags() {
-      return _.orderBy(this.tags, 'id').reverse();
+      return _.orderBy(this.tags.data, 'id').reverse();
+    }
+  },
+  methods: {
+    searchUnit: function searchUnit() {
+      var _this = this;
+
+      axios.get('/api/search_addreturn?id=' + this.search).then(function (response) {
+        _this.units = response.data;
+      });
     }
   },
   created: function created() {
-    var _this = this;
+    var _this2 = this;
 
     return _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default.a.mark(function _callee() {
       var res;
@@ -2380,15 +2447,15 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
           switch (_context.prev = _context.next) {
             case 0:
               _context.next = 2;
-              return _this.callApi('get', '/api/dmaddreturns/get_tag');
+              return _this2.callApi('get', '/api/dmaddreturns/get_tag');
 
             case 2:
               res = _context.sent;
 
               if (res.status == 200) {
-                _this.tags = res.data;
+                _this2.tags = res.data;
               } else {
-                _this.swr();
+                _this2.swr();
               }
 
             case 4:
@@ -67237,36 +67304,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-body" }, [
-    _c("div", { staticClass: "col-md-12" }, [
-      _c("table", { staticClass: "table" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.orderTags, function(tag, i) {
-            return _vm.tags.length
-              ? _c("tr", { key: i }, [
-                  _c("td", [_vm._v("DM/20/00" + _vm._s(tag.id))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(tag.finalized_at))]),
-                  _vm._v(" "),
-                  tag.status == null
-                    ? _c("td", { staticStyle: { "font-weight": "bold" } }, [
-                        _vm._v("PENDING ADMIN")
+  return _c("div", [
+    _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-2" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "text", placeholder: "Search" },
+            domProps: { value: _vm.search },
+            on: {
+              keyup: _vm.searchUnit,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.orderTags, function(tag, i) {
+                return _vm.units.length == 0
+                  ? _c("tr", { key: i }, [
+                      _c("td", [_vm._v("DM/20/D00" + _vm._s(tag.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(tag.finalized_at))]),
+                      _vm._v(" "),
+                      tag.status == null
+                        ? _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                            _vm._v("PENDING ADMIN")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      tag.status !== null
+                        ? _c("td", [_vm._v(_vm._s(tag.status))])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "td-actions text-right" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-link",
+                            attrs: {
+                              href: "dmform/" + tag.id,
+                              "data-toggle": "tooltip",
+                              "data-placement": "bottom",
+                              title: "Ver Receipt"
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "tim-icons icon-zoom-split"
+                            })
+                          ]
+                        )
                       ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  tag.status !== null
-                    ? _c("td", [_vm._v(_vm._s(tag.status))])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._m(1, true)
-                ])
-              : _vm._e()
-          }),
-          0
-        )
+                    ])
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.units, function(tag, i) {
+                return _vm.units.length
+                  ? _c("tr", { key: i }, [
+                      _c("td", [_vm._v("DM/20/D00" + _vm._s(tag.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(tag.finalized_at))]),
+                      _vm._v(" "),
+                      tag.status == null
+                        ? _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                            _vm._v("PENDING ADMIN")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      tag.status !== null
+                        ? _c("td", [_vm._v(_vm._s(tag.status))])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "td-actions text-right" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-link",
+                            attrs: {
+                              href: "dmform/" + tag.id,
+                              "data-toggle": "tooltip",
+                              "data-placement": "bottom",
+                              title: "Ver Receipt"
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "tim-icons icon-zoom-split"
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              })
+            ],
+            2
+          )
+        ])
       ])
     ])
   ])
@@ -67284,26 +67442,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Status")]),
       _vm._v(" "),
       _c("th")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "td-actions text-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-link",
-          attrs: {
-            href: "dmform",
-            "data-toggle": "tooltip",
-            "data-placement": "bottom",
-            title: "Ver Receipt"
-          }
-        },
-        [_c("i", { staticClass: "tim-icons icon-pencil" })]
-      )
     ])
   }
 ]
@@ -67548,36 +67686,127 @@ var render = function() {
   var _vm = this
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
-  return _c("div", { staticClass: "card-body" }, [
-    _c("div", {}, [
-      _c("table", { staticClass: "table" }, [
-        _vm._m(0),
-        _vm._v(" "),
-        _c(
-          "tbody",
-          _vm._l(_vm.orderTags, function(tag, i) {
-            return _vm.tags.length
-              ? _c("tr", { key: i }, [
-                  _c("td", [_vm._v("DM/20/A00" + _vm._s(tag.id))]),
-                  _vm._v(" "),
-                  _c("td", [_vm._v(_vm._s(tag.finalized_at))]),
-                  _vm._v(" "),
-                  tag.status == null
-                    ? _c("td", { staticStyle: { "font-weight": "bold" } }, [
-                        _vm._v("PENDING ADMIN")
+  return _c("div", [
+    _c("div", { staticClass: "card-header" }, [
+      _c("div", { staticClass: "row" }, [
+        _c("div", { staticClass: "col-md-2" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.search,
+                expression: "search"
+              }
+            ],
+            staticClass: "form-control form-control-sm",
+            attrs: { type: "text", placeholder: "Search" },
+            domProps: { value: _vm.search },
+            on: {
+              keyup: _vm.searchUnit,
+              input: function($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.search = $event.target.value
+              }
+            }
+          })
+        ])
+      ])
+    ]),
+    _vm._v(" "),
+    _c("div", { staticClass: "card-body" }, [
+      _c("div", { staticClass: "col-md-12" }, [
+        _c("table", { staticClass: "table" }, [
+          _vm._m(0),
+          _vm._v(" "),
+          _c(
+            "tbody",
+            [
+              _vm._l(_vm.orderTags, function(tag, i) {
+                return _vm.units.length == 0
+                  ? _c("tr", { key: i }, [
+                      _c("td", [_vm._v("DM/20/A00" + _vm._s(tag.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(tag.finalized_at))]),
+                      _vm._v(" "),
+                      tag.status == null
+                        ? _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                            _vm._v("PENDING ADMIN")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      tag.status !== null
+                        ? _c("td", [_vm._v(_vm._s(tag.status))])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "td-actions text-right" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-link",
+                            attrs: {
+                              href: "dmform/" + tag.id,
+                              "data-toggle": "tooltip",
+                              "data-placement": "bottom",
+                              title: "Ver Receipt"
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "tim-icons icon-zoom-split"
+                            })
+                          ]
+                        )
                       ])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  tag.status !== null
-                    ? _c("td", [_vm._v(_vm._s(tag.status))])
-                    : _vm._e(),
-                  _vm._v(" "),
-                  _vm._m(1, true)
-                ])
-              : _vm._e()
-          }),
-          0
-        )
+                    ])
+                  : _vm._e()
+              }),
+              _vm._v(" "),
+              _vm._l(_vm.units, function(tag, i) {
+                return _vm.units.length
+                  ? _c("tr", { key: i }, [
+                      _c("td", [_vm._v("DM/20/A00" + _vm._s(tag.id))]),
+                      _vm._v(" "),
+                      _c("td", [_vm._v(_vm._s(tag.finalized_at))]),
+                      _vm._v(" "),
+                      tag.status == null
+                        ? _c("td", { staticStyle: { "font-weight": "bold" } }, [
+                            _vm._v("PENDING ADMIN")
+                          ])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      tag.status !== null
+                        ? _c("td", [_vm._v(_vm._s(tag.status))])
+                        : _vm._e(),
+                      _vm._v(" "),
+                      _c("td", { staticClass: "td-actions text-right" }, [
+                        _c(
+                          "a",
+                          {
+                            staticClass: "btn btn-link",
+                            attrs: {
+                              href: "dmaddreturns/" + tag.id,
+                              "data-toggle": "tooltip",
+                              "data-placement": "bottom",
+                              title: "Ver Receipt"
+                            }
+                          },
+                          [
+                            _c("i", {
+                              staticClass: "tim-icons icon-zoom-split"
+                            })
+                          ]
+                        )
+                      ])
+                    ])
+                  : _vm._e()
+              })
+            ],
+            2
+          )
+        ])
       ])
     ])
   ])
@@ -67595,26 +67824,6 @@ var staticRenderFns = [
       _c("th", [_vm._v("Status")]),
       _vm._v(" "),
       _c("th")
-    ])
-  },
-  function() {
-    var _vm = this
-    var _h = _vm.$createElement
-    var _c = _vm._self._c || _h
-    return _c("td", { staticClass: "td-actions text-right" }, [
-      _c(
-        "a",
-        {
-          staticClass: "btn btn-link",
-          attrs: {
-            href: "dmaddreturns",
-            "data-toggle": "tooltip",
-            "data-placement": "bottom",
-            title: "Ver Receipt"
-          }
-        },
-        [_c("i", { staticClass: "tim-icons icon-pencil" })]
-      )
     ])
   }
 ]

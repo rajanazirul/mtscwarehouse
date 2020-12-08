@@ -9,35 +9,29 @@ use App\Dmform;
 class DashboardController extends Controller
 {
     public function getStatus(Request $request){
-        return Dmaddreturn::all();
-    }
-
-    public function editStatus(Request $request)
-    {
-        // validate request
-        $this->validate($request, [
-            'status' => 'required',
-            'id' => 'required',
-        ]);
-        return Dmaddreturn::where('id', $request->id)->update([
-            'status' => $request->status,
-        ]);
+        return Dmaddreturn::paginate(5);
     }
 
     public function getDeduct(Request $request){
-        return Dmform::all();
-    }
-
-    public function editDeduct(Request $request)
-    {
-        // validate request
-        $this->validate($request, [
-            'status' => 'required',
-            'id' => 'required',
-        ]);
-        return Dmform::where('id', $request->id)->update([
-            'status' => $request->status,
-        ]);
+        return Dmform::paginate(5);
     }
     
+    public function searchDmform(Request $request)
+    {
+    	$key = $request->id;
+        $unit = Dmform::where('id','LIKE',"%{$key}%")
+                                    ->get();
+
+    	return response()->json($unit);
+    }
+
+    public function searchAddreturn(Request $request)
+    {
+    	$key = $request->id;
+        $unit = Dmaddreturn::where('id','LIKE',"%{$key}%")
+                                    ->get();
+
+    	return response()->json($unit);
+    }
+
 }
