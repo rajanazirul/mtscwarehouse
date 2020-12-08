@@ -44,6 +44,11 @@
                     </td>
                 </tr> 
             </tbody>
+            <div class="card-footer py-4">
+                    <nav class="d-flex justify-content-end" aria-label="...">
+                        {{ tags.current_page}}asdad
+                    </nav>
+            </div>
         </table>
     </div>
 </div>  
@@ -80,6 +85,13 @@ export default {
                 this.units = response.data
           })
         }),
+
+        getResults(page = 1) {
+              axios.get('/api/dmform/getdeduct?page=' + page)
+                .then(response => {
+                  this.tags = response.data;
+              });
+        },
 
     },
 
