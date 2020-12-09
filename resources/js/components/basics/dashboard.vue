@@ -26,7 +26,7 @@
                     
                     <td v-if="tag.status !== null">{{tag.status}}</td>
                     <td class="td-actions text-right">
-                        <a v-bind:href="'dmform/'+ tag.id" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
+                        <a v-bind:href="'dmaddreturns/'+ tag.id" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Ver Receipt">
                             <i class="tim-icons icon-zoom-split"></i>
                         </a>
                     </td>

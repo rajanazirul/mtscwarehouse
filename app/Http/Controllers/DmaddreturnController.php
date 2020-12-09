@@ -114,20 +114,20 @@ class DmaddreturnController extends Controller
             $addreturnproduct->product->stock += $addreturnproduct->stock;
             $addreturnproduct->product->save();
             
-            if ($addreturnproduct->product->product_category_id == 2) {
+            /*if ($addreturnproduct->product->product_category_id == 2) {
                 $message = 'CHECK';
                 Dmaddreturn::where('id', $dmaddreturn->id)->update([
                     'status' => $message,
                 ]);
-            }
+            }*/
         }
 
-        if($dmaddreturn->purpose_id == 2 || $dmaddreturn->purpose_id == 3) {
+        /*if($dmaddreturn->purpose_id == 2 || $dmaddreturn->purpose_id == 3) {
             $message = 'CHECK';
             Dmaddreturn::where('id', $dmaddreturn->id)->update([
                 'status' => $message,
             ]);
-        }
+        }*/
 
         return back()->withStatus('DM successfully completed.');
     }

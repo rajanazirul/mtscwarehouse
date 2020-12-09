@@ -44,11 +44,12 @@
                     </td>
                 </tr> 
             </tbody>
+            <!--<pagination :data="tags" @pagination-change-page="getResults"></pagination>
             <div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
                         {{ tags.current_page}}asdad
                     </nav>
-            </div>
+            </div>-->
         </table>
     </div>
 </div>  
@@ -79,19 +80,19 @@ export default {
 
     methods:{
 
+        /*getResults(page = 1) {
+              axios.get('/api/dmform/getdeduct?page=' + page)
+                .then(response => {
+                  this.tags = response.data;
+              });
+        },*/
+
         searchUnit:_.debounce(function(){
           axios.get('/api/search_dmform?id='+this.search)
                 .then((response)=>{
                 this.units = response.data
           })
         }),
-
-        getResults(page = 1) {
-              axios.get('/api/dmform/getdeduct?page=' + page)
-                .then(response => {
-                  this.tags = response.data;
-              });
-        },
 
     },
 
