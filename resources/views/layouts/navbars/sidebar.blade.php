@@ -10,34 +10,33 @@
 
 
             <li>
-                <a data-toggle="collapse" href="#dmform" {{ $section == 'dmform' ? 'aria-expanded=true' : '' }}>
+                <!--<a data-toggle="collapse" href="#dmform" {{ $section == 'dmform' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-bank" ></i>
                     <span class="nav-link-text">DM Forms</span>
                     <b class="caret mt-1"></b>
                 </a>
 
                 <div class="collapse {{ $section == 'dmform' ? 'show' : '' }}" id="dmform">
-                    <ul class="nav pl-4">
-
-                        <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
-                            <a href="{{ route('dmaddreturns.index')  }}">
-                                <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>ADD/RETURN PARTS</p>
-                            </a>
-                        </li>
+                    <ul class="nav pl-4">-->
 
                         <li @if ($pageSlug == 'dmform') class="active " @endif>
                             <a href="{{ route('dmform.index')  }}">
                                 <i class="tim-icons icon-bullet-list-67"></i>
-                                <p>DEDUCT/ISSUED PARTS</p>
+                                <p>ISSUED PARTS</p>
                             </a>
                         </li>
 
+                        <li @if ($pageSlug == 'dmaddreturns') class="active " @endif>
+                            <a href="{{ route('dmaddreturns.index')  }}">
+                                <i class="tim-icons icon-bullet-list-67"></i>
+                                <p>RETURN PARTS</p>
+                            </a>
+                        </li>
                         
-                    </ul>
-                </div>
+                    <!--</ul>
+                </div>-->
             
-            <li>
+        <!--<li>
                 <a data-toggle="collapse" href="#inventory" {{ $section == 'inventory' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-app"></i>
                     <span class="nav-link-text">Inventory</span>
@@ -45,7 +44,7 @@
                 </a>
 
                 <div class="collapse {{ $section == 'inventory' ? 'show' : '' }}" id="inventory">
-                    <ul class="nav pl-4">
+                    <ul class="nav pl-4">-->
                         <li @if ($pageSlug == 'products') class="active " @endif>
                             <a href="{{ route('products.index') }}">
                                 <i class="tim-icons icon-notes"></i>
@@ -65,9 +64,9 @@
                             </a>
                         </li>-->
                         
-                    </ul>
+                    <!--</ul>
                 </div>
-            </li>
+            </li>-->
 
             <!--<li @if ($pageSlug == 'customers') class="active " @endif>
                 <a href="{{ route('customers.index') }}">
@@ -84,7 +83,7 @@
             
 
 
-            <li>
+            <!--<li>
                 <a data-toggle="collapse" href="#users" {{ $section == 'users' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-badge" ></i>
                     <span class="nav-link-text">Users</span>
@@ -92,14 +91,14 @@
                 </a>
 
                 <div class="collapse {{ $section == 'users' ? 'aria-expanded=true' : '' }}" id="users">
-                    <ul class="nav pl-4">
+                    <ul class="nav pl-4">-->
                         <li @if ($pageSlug == 'profile') class="active " @endif>
                             <a href="{{ route('profile.edit')  }}">
                                 <i class="tim-icons icon-badge"></i>
                                 <p>My profile</p>
                             </a>
                         </li>
-                        <li @if ($pageSlug == 'users-list') class="active " @endif>
+                        <!--<li @if ($pageSlug == 'users-list') class="active " @endif>
                             <a href="{{ route('users.index')  }}">
                                 <i class="tim-icons icon-notes"></i>
                                 <p>Manage Users</p>
@@ -113,7 +112,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
         </ul>
     </div>
 </div>

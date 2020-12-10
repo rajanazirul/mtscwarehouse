@@ -1,8 +1,68 @@
 <template>
-<div >
-<tr v-for="(tag, i) in tags" :key="i" v-if="tags.length">
-<Button type="info" size="small" @click="showEditModal(tag, i)" >Edit</Button>
-</tr>
+<div>
+    
+<div class="card-body">
+    <div class="">
+        <div class="col-4 text-right">
+        </div>
+        
+        <table class="table">
+            <thead>
+                <th>Date</th>
+                <th>Purpose</th>
+                <th>DO No.</th>
+                <th>Inv No.</th>
+                <th>Product</th>
+                <th>Stock</th>
+                <th>Status</th>
+            </thead>
+            <tr v-for="(tag, i) in tags" :key="i" v-if="tags.length"> 
+                <td>{{tag.status}}</td>
+                <td>{{tag.id}}</td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td></td>
+                <td>
+                <button type="button" class="btn btn-sm btn-primary" data-toggle="modal" data-target="#transactionModal">
+                Change Status
+                </button>
+                <Button type="info" size="small" @click="showEditModal(tag, i)" >Edit</Button>
+                </td>
+            </tr>
+
+        </table>
+    </div>
+</div>
+
+<div class="modal fade" id="transactionModal" tabindex="-1" role="dialog" aria-labelledby="transactionModal" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Change Status</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="d-flex justify-content-between">
+                <div class="row">
+                    <div class="col-15">
+                <input v-model="editData.status" placeholder="Edit tag name" >
+
+                </div>
+                    
+                </div>
+                </div>
+                <div slot="footer">
+                    <a  class="btn btn-sm btn-primary" @click="editTag()">{{isAdding ? 'Adding..' : 'Add tag'}}</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <Modal
     v-model="editModal"
     title="Edit tag"
@@ -14,10 +74,11 @@
 
     <div slot="footer">
         <Button type="default" @click="editModal=false">Close</Button>
-        <Button href="" type="primary" @click="editTag" :disabled="isAdding" :loading="isAdding">{{isAdding ? 'Editing..' : 'Edit tag'}}</Button>
+        <Button type="primary" @click="editTag" :disabled="isAdding" :loading="isAdding">{{isAdding ? 'Editing..' : 'Edit tag'}}</Button>
     </div>
 
 </Modal>
+
 </div>
 
 </template>
@@ -64,7 +125,6 @@ export default {
                 this.tags[this.index].status = this.editData.status
                 this.s('Tag has been edited successfully!')
                 this.editModal = false
-                window.location.reload()
             }else{
                 if(res.status==422){
                     if(res.data.errors.status){
