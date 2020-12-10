@@ -3,16 +3,29 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Tag;
 use App\Dmaddreturn;
-use App\Dmform;
 
 class DashboardController extends Controller
 {
-    public function getStatus(Request $request){
+    public function DashboardView(){
+
+        return respond()->json([
+            'msg' => 'Succes'
+        ]);
+    }
+
+    public function addStatus(Request $request){
+        return Tag::create([
+            'status' => $request->status
+        ]);
+    }
+
+    public function getStatus(){
         return Dmaddreturn::all();
     }
 
-    public function editStatus(Request $request)
+    public function editTag(Request $request)
     {
         // validate request
         $this->validate($request, [
@@ -20,22 +33,6 @@ class DashboardController extends Controller
             'id' => 'required',
         ]);
         return Dmaddreturn::where('id', $request->id)->update([
-            'status' => $request->status,
-        ]);
-    }
-
-    public function getDeduct(Request $request){
-        return Dmform::all();
-    }
-
-    public function editDeduct(Request $request)
-    {
-        // validate request
-        $this->validate($request, [
-            'status' => 'required',
-            'id' => 'required',
-        ]);
-        return Dmform::where('id', $request->id)->update([
             'status' => $request->status,
         ]);
     }

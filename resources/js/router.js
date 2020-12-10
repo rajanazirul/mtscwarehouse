@@ -1,37 +1,28 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import ViewUI from 'view-design'
-import Vue2Filters from 'vue2-filters'
-import 'view-design/dist/styles/iview.css'
+import ViewUI from 'view-design';
+import 'view-design/dist/styles/iview.css';
 Vue.use(Router)
-Vue.use(ViewUI)
-Vue.use(Vue2Filters)
+Vue.use(ViewUI);
 
+import firstPages from './components/pages/firstPages'
+import methods from './components/basics/methods.vue'
+import tags from './components/basics/tags.vue'
 import adminbutton from './components/basics/adminbutton.vue'
-import AdminDeduct from './components/basics/AdminDeduct.vue'
-import dashboard from './components/basics/dashboard.vue'
-
 const routes = [
+    {
+        path: '/first',
+        component: firstPages
+    },
     //method
     {
-        path: '/dmaddreturns/*',
+        path: '/dmaddreturns',
         component: adminbutton
-    },
-
-    {
-        path: '/dmform/*',
-        component: AdminDeduct
-    },
-
-    {
-        path: '/',
-        component: dashboard
     }
 
 ]
 
 export default new Router({
     mode: 'history',
-    mixins: [Vue2Filters.mixin],
     routes
 })
