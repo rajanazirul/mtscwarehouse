@@ -83,7 +83,7 @@
             
 
 
-            <li>
+            <!--<li>
                 <a data-toggle="collapse" href="#users" {{ $section == 'users' ? 'aria-expanded=true' : '' }}>
                     <i class="tim-icons icon-badge" ></i>
                     <span class="nav-link-text">Users</span>
@@ -91,14 +91,14 @@
                 </a>
 
                 <div class="collapse {{ $section == 'users' ? 'aria-expanded=true' : '' }}" id="users">
-                    <ul class="nav pl-4">
+                    <ul class="nav pl-4">-->
                         <li @if ($pageSlug == 'profile') class="active " @endif>
                             <a href="{{ route('profile.edit')  }}">
                                 <i class="tim-icons icon-badge"></i>
                                 <p>My profile</p>
                             </a>
                         </li>
-                        <li @if ($pageSlug == 'users-list') class="active " @endif>
+                        <!--<li @if ($pageSlug == 'users-list') class="active " @endif>
                             <a href="{{ route('users.index')  }}">
                                 <i class="tim-icons icon-notes"></i>
                                 <p>Manage Users</p>
@@ -112,7 +112,7 @@
                         </li>
                     </ul>
                 </div>
-            </li>
+            </li>-->
         </ul>
     </div>
 </div>

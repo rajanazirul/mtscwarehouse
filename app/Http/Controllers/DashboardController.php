@@ -3,29 +3,16 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Tag;
 use App\Dmaddreturn;
+use App\Dmform;
 
 class DashboardController extends Controller
 {
-    public function DashboardView(){
-
-        return respond()->json([
-            'msg' => 'Succes'
-        ]);
+    public function getStatus(Request $request){
+        return Dmaddreturn::paginate(10);
     }
 
-    public function addStatus(Request $request){
-        return Tag::create([
-            'status' => $request->status
-        ]);
-    }
-
-    public function getStatus(){
-        return Dmaddreturn::all();
-    }
-
-    public function editTag(Request $request)
+    public function editStatus(Request $request)
     {
         // validate request
         $this->validate($request, [
@@ -35,6 +22,40 @@ class DashboardController extends Controller
         return Dmaddreturn::where('id', $request->id)->update([
             'status' => $request->status,
         ]);
+    }
+
+    public function getDeduct(Request $request){
+        return Dmform::paginate(10);
+    }
+
+    public function editDeduct(Request $request)
+    {
+        // validate request
+        $this->validate($request, [
+            'status' => 'required',
+            'id' => 'required',
+        ]);
+        return Dmform::where('id', $request->id)->update([
+            'status' => $request->status,
+        ]);
+    }
+    
+    public function searchDmform(Request $request)
+    {
+    	$key = $request->id;
+        $unit = Dmform::where('id','LIKE',"%{$key}%")
+                                    ->get();
+
+    	return response()->json($unit);
+    }
+
+    public function searchAddreturn(Request $request)
+    {
+    	$key = $request->id;
+        $unit = Dmaddreturn::where('id','LIKE',"%{$key}%")
+                                    ->get();
+
+    	return response()->json($unit);
     }
     
 }
