@@ -9,7 +9,6 @@ Vue.use(Vue2Filters)
 
 import adminbutton from './components/basics/adminbutton.vue'
 import AdminDeduct from './components/basics/AdminDeduct.vue'
-import dashboard from './components/basics/dashboard.vue'
 
 const routes = [
     //method
@@ -22,11 +21,6 @@ const routes = [
         path: '/dmform/*',
         component: AdminDeduct
     },
-
-    {
-        path: '/',
-        component: dashboard
-    }
 
 ]
 

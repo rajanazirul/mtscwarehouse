@@ -46,34 +46,53 @@
         </table>
     </div>
 </div>  
-<navbar></navbar>
+            <div>
+                <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
+            </div>
 </div>
 </template>
 
 <script>
-import navbar from './navbar.vue'
 export default {
-  components: { navbar },
 
     data(){
         return {
             units: [],
             search: '',
             tags : [],
+            laravelData: {},
 
         }
+    },
+
+    created(){
+        this.getResults()
     },
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'updated_at')
+            return _.orderBy(this.laravelData.data, 'updated_at').reverse()
         },
         orderId: function(){
-            return _.orderBy(this.units, 'updated_at')
+            return _.orderBy(this.units, 'updated_at').reverse()
         }
     },
 
     methods:{
+
+        getResults(page) {
+            if (typeof page === 'undefined') {
+				page = 1;
+			}
+
+			// Using vue-resource as an example
+			this.$http.get('api/dmaddreturns/get_tag?page=' + page)
+				.then(response => {
+					return response.json();
+				}).then(data => {
+					this.laravelData = data;
+				});
+        },
 
         searchUnit:function(){
           axios.get('/api/search_addreturn?id='+this.search)
@@ -82,16 +101,16 @@ export default {
           })
         },
 
-    },
+    }
 
-    async created(){
+    /*async created(){
         const res =await this.callApi('get', '/api/dmaddreturns/get_tag')
         if(res.status == 200){
             this.tags  = res.data
         }else{
             this.swr()
         }
-    }
+    }*/
 
 }
 </script>

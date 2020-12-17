@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Dmaddreturn;
 use App\Dmform;
+use App\TakenProduct;
 
 class DashboardController extends Controller
 {
@@ -25,6 +26,15 @@ class DashboardController extends Controller
     }
 
     public function getDeduct(Request $request){
+        
+        /*$dmform = Dmform::orderByDesc('id')->paginate(10);
+        $dmform_id = Dmform::orderByDesc('id')->paginate(10)->get();
+        $product = TakenProduct::where('id', '1')
+        ->get();
+        $result = array();
+        $result['dmform'] = $dmform;
+        $result['dmform']['product']= $product;
+        return response()->json($result);*/
         return Dmform::orderByDesc('id')->paginate(10);
     }
 

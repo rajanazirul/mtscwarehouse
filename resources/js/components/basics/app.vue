@@ -6,7 +6,6 @@
        <div class="col-md-2">
           <input type="text" @keyup="searchUnit" placeholder="Search" v-model="search" class="form-control form-control-sm">
         </div>
-        <pagination :data="laravelData" @pagination-change-page="getResults"></pagination>
     </div>
   </div>
 
@@ -45,15 +44,12 @@
                     </td>
                 </tr> 
             </tbody>
-            <!--<div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ tags.next_page_url}}asdad
-                    </nav>
-            </div>-->
         </table>
     </div>
 </div>  
-
+            <div>
+                <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
+            </div>
 </div>
 </template>
 
@@ -69,9 +65,13 @@ export default {
         }
     },
 
+    created(){
+        this.getResults()
+    },
+
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'updated_at').reverse()
+            return _.orderBy(this.laravelData.data, 'updated_at').reverse()
         },
         orderId: function(){
             return _.orderBy(this.units, 'updated_at').reverse()
@@ -94,23 +94,13 @@ export default {
 				});
         },
 
-        searchUnit:_.debounce(function(){
+        searchUnit:function(){
           axios.get('/api/search_dmform?id='+this.search)
                 .then((response)=>{
                 this.units = response.data
           })
-        }),
-
-    },
-
-    async created(){
-        const res =await this.callApi('get', '/api/dmform/getdeduct')
-        this.getResults()
-        if(res.status == 200){
-            this.tags  = res.data
-        }else{
-            this.swr()
         }
+        
     }
 
 }
