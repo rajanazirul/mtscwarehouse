@@ -6,6 +6,7 @@
        <div class="col-md-2">
           <input type="text" @keyup="searchUnit" placeholder="Search" v-model="search" class="form-control form-control-sm">
         </div>
+        <pagination :data="laravelData" @pagination-change-page="getResults"></pagination>
     </div>
   </div>
 
@@ -44,10 +45,9 @@
                     </td>
                 </tr> 
             </tbody>
-            <!--<pagination :data="tags" @pagination-change-page="getResults"></pagination>
-            <div class="card-footer py-4">
+            <!--<div class="card-footer py-4">
                     <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ tags.current_page}}asdad
+                        {{ tags.next_page_url}}asdad
                     </nav>
             </div>-->
         </table>
@@ -65,27 +65,34 @@ export default {
             units: [],
             search: '',
             tags : [],
-
+            laravelData: {},
         }
     },
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'finalized_at').reverse()
+            return _.orderBy(this.tags.data, 'updated_at').reverse()
         },
         orderId: function(){
-            return _.orderBy(this.units, 'finalized_at').reverse()
+            return _.orderBy(this.units, 'updated_at').reverse()
         }
     },
 
     methods:{
 
-        /*getResults(page = 1) {
-              axios.get('/api/dmform/getdeduct?page=' + page)
-                .then(response => {
-                  this.tags = response.data;
-              });
-        },*/
+        getResults(page) {
+            if (typeof page === 'undefined') {
+				page = 1;
+			}
+
+			// Using vue-resource as an example
+			this.$http.get('api/dmform/getdeduct?page=' + page)
+				.then(response => {
+					return response.json();
+				}).then(data => {
+					this.laravelData = data;
+				});
+        },
 
         searchUnit:_.debounce(function(){
           axios.get('/api/search_dmform?id='+this.search)
@@ -98,6 +105,7 @@ export default {
 
     async created(){
         const res =await this.callApi('get', '/api/dmform/getdeduct')
+        this.getResults()
         if(res.status == 200){
             this.tags  = res.data
         }else{

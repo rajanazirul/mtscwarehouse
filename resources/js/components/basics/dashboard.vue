@@ -46,12 +46,14 @@
         </table>
     </div>
 </div>  
-
+<navbar></navbar>
 </div>
 </template>
 
 <script>
+import navbar from './navbar.vue'
 export default {
+  components: { navbar },
 
     data(){
         return {
@@ -64,10 +66,10 @@ export default {
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'finalized_at').reverse()
+            return _.orderBy(this.tags.data, 'updated_at')
         },
         orderId: function(){
-            return _.orderBy(this.units, 'finalized_at').reverse()
+            return _.orderBy(this.units, 'updated_at')
         }
     },
 

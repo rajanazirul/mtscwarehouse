@@ -9,7 +9,7 @@ use App\Dmform;
 class DashboardController extends Controller
 {
     public function getStatus(Request $request){
-        return Dmaddreturn::paginate(10);
+        return Dmaddreturn::orderByDesc('id')->paginate(10);
     }
 
     public function editStatus(Request $request)
@@ -25,7 +25,7 @@ class DashboardController extends Controller
     }
 
     public function getDeduct(Request $request){
-        return Dmform::paginate(10);
+        return Dmform::orderByDesc('id')->paginate(10);
     }
 
     public function editDeduct(Request $request)
@@ -44,7 +44,7 @@ class DashboardController extends Controller
     {
     	$key = $request->id;
         $unit = Dmform::where('id','LIKE',"%{$key}%")
-                                    ->get();
+            ->get();
 
     	return response()->json($unit);
     }
@@ -53,7 +53,7 @@ class DashboardController extends Controller
     {
     	$key = $request->id;
         $unit = Dmaddreturn::where('id','LIKE',"%{$key}%")
-                                    ->get();
+            ->get();
 
     	return response()->json($unit);
     }
