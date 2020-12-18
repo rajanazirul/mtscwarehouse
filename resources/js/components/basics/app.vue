@@ -19,7 +19,7 @@
                 <th></th>
             </thead>
             <tbody>
-                <tr v-for="(tag, i) in orderTags" :key="i" v-if="units.length == 0" >
+                <tr v-for="(tag, i) in orderTags" :key="i" v-if="search == ''" >
                     <td>DM/20/D00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
@@ -31,7 +31,7 @@
                         </a>
                     </td>
                 </tr>
-                <tr v-for="(tag, i) in orderId" :key="i" v-if="units.length > 0" >
+                <tr v-for="(tag, i) in orderId" :key="i" v-if="search != ''" >
                     <td>DM/20/D00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
@@ -44,16 +44,12 @@
                     </td>
                 </tr> 
             </tbody>
-            <!--<pagination :data="tags" @pagination-change-page="getResults"></pagination>
-            <div class="card-footer py-4">
-                    <nav class="d-flex justify-content-end" aria-label="...">
-                        {{ tags.current_page}}asdad
-                    </nav>
-            </div>-->
         </table>
     </div>
 </div>  
-
+            <div>
+                <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
+            </div>
 </div>
 </template>
 
@@ -65,44 +61,46 @@ export default {
             units: [],
             search: '',
             tags : [],
-
+            laravelData: {},
         }
+    },
+
+    created(){
+        this.getResults()
     },
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'finalized_at').reverse()
+            return _.orderBy(this.laravelData.data, 'updated_at').reverse()
         },
         orderId: function(){
-            return _.orderBy(this.units, 'finalized_at').reverse()
+            return _.orderBy(this.units, 'updated_at').reverse()
         }
     },
 
     methods:{
 
-        /*getResults(page = 1) {
-              axios.get('/api/dmform/getdeduct?page=' + page)
-                .then(response => {
-                  this.tags = response.data;
-              });
-        },*/
+        getResults(page) {
+            if (typeof page === 'undefined') {
+				page = 1;
+			}
 
-        searchUnit:_.debounce(function(){
+			// Using vue-resource as an example
+			this.$http.get('api/dmform/getdeduct?page=' + page)
+				.then(response => {
+					return response.json();
+				}).then(data => {
+					this.laravelData = data;
+				});
+        },
+
+        searchUnit:function(){
           axios.get('/api/search_dmform?id='+this.search)
                 .then((response)=>{
                 this.units = response.data
           })
-        }),
-
-    },
-
-    async created(){
-        const res =await this.callApi('get', '/api/dmform/getdeduct')
-        if(res.status == 200){
-            this.tags  = res.data
-        }else{
-            this.swr()
         }
+        
     }
 
 }

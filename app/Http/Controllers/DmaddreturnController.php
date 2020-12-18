@@ -114,20 +114,20 @@ class DmaddreturnController extends Controller
             $addreturnproduct->product->stock += $addreturnproduct->stock;
             $addreturnproduct->product->save();
             
-            /*if ($addreturnproduct->product->product_category_id == 2) {
-                $message = 'CHECK';
+            if ($addreturnproduct->product->product_category_id == 7 || $addreturnproduct->product->product_category_id == 8) {
+                $message = 'IGNORE (VITROX Item)';
                 Dmaddreturn::where('id', $dmaddreturn->id)->update([
                     'status' => $message,
                 ]);
-            }*/
+            }
         }
 
-        /*if($dmaddreturn->purpose_id == 2 || $dmaddreturn->purpose_id == 3) {
-            $message = 'CHECK';
+        if($dmaddreturn->purpose_id == 10 || $dmaddreturn->purpose_id == 9) {
+            $message = 'IGNORE (PURCHASING/CHECK STOCK)';
             Dmaddreturn::where('id', $dmaddreturn->id)->update([
                 'status' => $message,
             ]);
-        }*/
+        }
 
         return back()->withStatus('DM successfully completed.');
     }

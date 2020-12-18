@@ -5,11 +5,13 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Dmaddreturn;
 use App\Dmform;
+use App\TakenProduct;
+use App\Product;
 
 class DashboardController extends Controller
 {
     public function getStatus(Request $request){
-        return Dmaddreturn::paginate(10);
+        return Dmaddreturn::orderByDesc('id')->paginate(10);
     }
 
     public function editStatus(Request $request)
@@ -25,7 +27,16 @@ class DashboardController extends Controller
     }
 
     public function getDeduct(Request $request){
-        return Dmform::paginate(10);
+        
+        /*$dmform = Dmform::orderByDesc('id')->paginate(10);
+        $dmform_id = Dmform::orderByDesc('id')->paginate(10)->get();
+        $product = TakenProduct::where('id', '1')
+        ->get();
+        $result = array();
+        $result['dmform'] = $dmform;
+        $result['dmform']['product']= $product;
+        return response()->json($result);*/
+        return Dmform::orderByDesc('id')->paginate(10);
     }
 
     public function editDeduct(Request $request)
@@ -39,12 +50,34 @@ class DashboardController extends Controller
             'status' => $request->status,
         ]);
     }
-    
+
+    public function getProduct(Request $request){
+        return Product::orderByDesc('id')->paginate(10);
+    }
+
+    public function searchProduct(Request $request)
+    {
+    	$key = $request->id;
+        $unit = Product::where('description','LIKE',"%{$key}%")
+            ->get();
+
+    	return response()->json($unit);
+    }
+
+    public function searchPart(Request $request)
+    {
+    	$key = $request->part;
+        $unit = Product::where('name','LIKE',"%{$key}%")
+            ->get();
+
+    	return response()->json($unit);
+    }
+
     public function searchDmform(Request $request)
     {
     	$key = $request->id;
         $unit = Dmform::where('id','LIKE',"%{$key}%")
-                                    ->get();
+            ->get();
 
     	return response()->json($unit);
     }
@@ -53,7 +86,7 @@ class DashboardController extends Controller
     {
     	$key = $request->id;
         $unit = Dmaddreturn::where('id','LIKE',"%{$key}%")
-                                    ->get();
+            ->get();
 
     	return response()->json($unit);
     }

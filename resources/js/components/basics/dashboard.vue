@@ -19,7 +19,7 @@
                 <th></th>
             </thead>
             <tbody>
-                <tr v-for="(tag, i) in orderTags" :key="i" v-if="units.length == 0" >
+                <tr v-for="(tag, i) in orderTags" :key="i" v-if="search == ''" >
                     <td>DM/20/A00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
@@ -31,7 +31,7 @@
                         </a>
                     </td>
                 </tr>
-                <tr v-for="(tag, i) in orderId" :key="i" v-if="units.length > 0">
+                <tr v-for="(tag, i) in orderId" :key="i" v-if="search != ''">
                     <td>DM/20/A00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
@@ -46,7 +46,9 @@
         </table>
     </div>
 </div>  
-
+            <div>
+                <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
+            </div>
 </div>
 </template>
 
@@ -58,20 +60,39 @@ export default {
             units: [],
             search: '',
             tags : [],
+            laravelData: {},
 
         }
+    },
+
+    created(){
+        this.getResults()
     },
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.tags.data, 'finalized_at').reverse()
+            return _.orderBy(this.laravelData.data, 'updated_at')
         },
         orderId: function(){
-            return _.orderBy(this.units, 'finalized_at').reverse()
+            return _.orderBy(this.units, 'updated_at')
         }
     },
 
     methods:{
+
+        getResults(page) {
+            if (typeof page === 'undefined') {
+				page = 1;
+			}
+
+			// Using vue-resource as an example
+			this.$http.get('api/dmaddreturns/get_tag?page=' + page)
+				.then(response => {
+					return response.json();
+				}).then(data => {
+					this.laravelData = data;
+				});
+        },
 
         searchUnit:function(){
           axios.get('/api/search_addreturn?id='+this.search)
@@ -80,16 +101,16 @@ export default {
           })
         },
 
-    },
+    }
 
-    async created(){
+    /*async created(){
         const res =await this.callApi('get', '/api/dmaddreturns/get_tag')
         if(res.status == 200){
             this.tags  = res.data
         }else{
             this.swr()
         }
-    }
+    }*/
 
 }
 </script>
