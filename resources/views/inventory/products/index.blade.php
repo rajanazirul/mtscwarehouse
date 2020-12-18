@@ -1,10 +1,12 @@
 @extends('layouts.app', ['page' => 'List of Products', 'pageSlug' => 'products', 'section' => 'inventory'])
 
 @section('content')
-    <div class="row">
+    <div id="dashboard" class="row">
         <div class="col-md-12">
+        
             <div class="card ">
                 <div class="card-header">
+                <product></product>
                     <div class="row">
                         <div class="col-8">
                             <h4 class="card-title">Products</h4>
@@ -60,4 +62,5 @@
             </div>
         </div>
     </div>
+    <script src="{{mix('/js/app.js')}}"></script>
 @endsection

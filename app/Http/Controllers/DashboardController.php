@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use App\Dmaddreturn;
 use App\Dmform;
 use App\TakenProduct;
+use App\Product;
 
 class DashboardController extends Controller
 {
@@ -49,7 +50,29 @@ class DashboardController extends Controller
             'status' => $request->status,
         ]);
     }
-    
+
+    public function getProduct(Request $request){
+        return Product::orderByDesc('id')->paginate(10);
+    }
+
+    public function searchProduct(Request $request)
+    {
+    	$key = $request->id;
+        $unit = Product::where('description','LIKE',"%{$key}%")
+            ->get();
+
+    	return response()->json($unit);
+    }
+
+    public function searchPart(Request $request)
+    {
+    	$key = $request->part;
+        $unit = Product::where('name','LIKE',"%{$key}%")
+            ->get();
+
+    	return response()->json($unit);
+    }
+
     public function searchDmform(Request $request)
     {
     	$key = $request->id;

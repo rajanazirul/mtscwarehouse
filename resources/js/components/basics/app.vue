@@ -19,7 +19,7 @@
                 <th></th>
             </thead>
             <tbody>
-                <tr v-for="(tag, i) in orderTags" :key="i" v-if="units.length == 0" >
+                <tr v-for="(tag, i) in orderTags" :key="i" v-if="search == ''" >
                     <td>DM/20/D00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
@@ -31,7 +31,7 @@
                         </a>
                     </td>
                 </tr>
-                <tr v-for="(tag, i) in orderId" :key="i" v-if="units.length > 0" >
+                <tr v-for="(tag, i) in orderId" :key="i" v-if="search != ''" >
                     <td>DM/20/D00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>

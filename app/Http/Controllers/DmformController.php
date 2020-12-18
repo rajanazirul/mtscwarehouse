@@ -109,7 +109,6 @@ class DmformController extends Controller
 
     public function finalize(Dmform $dmform)
     {
-        $dmform->total_qty = $dmform->products->sum('total_qty');
 
         foreach ($dmform->products as $taken_product) {
             $product_name = $taken_product->product->name;
@@ -120,13 +119,26 @@ class DmformController extends Controller
         foreach ($dmform->products as $taken_product) {
             $taken_product->product->stock -= $taken_product->qty;
             $taken_product->product->save();
+
+            if ($taken_product->product->product_category_id == 7 || $taken_product->product->product_category_id == 8) {
+                $message = 'IGNORE (VITROX Item)';
+                Dmform::where('id', $dmform->id)->update([
+                    'status' => $message,
+                ]);
+            }
         }
 
+        if($dmform->purpose_id == 10 || $dmform->purpose_id == 9) {
+            $message = 'IGNORE (PURCHASING/CHECK STOCK)';
+            Dmform::where('id', $dmform->id)->update([
+                'status' => $message,
+            ]);
+        }
+
+        $dmform->total_qty = $dmform->products->sum('total_qty');
         $dmform->finalized_at = Carbon::now()->toDateTimeString();
-      
         $dmform->save();
        
-
         return back()->withStatus('The DM has been successfully completed.');
     }
 
