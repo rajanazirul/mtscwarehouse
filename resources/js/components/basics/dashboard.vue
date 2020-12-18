@@ -71,10 +71,10 @@ export default {
 
     computed: {
         orderTags: function(){
-            return _.orderBy(this.laravelData.data, 'updated_at')
+            return _.orderBy(this.laravelData.data, 'updated_at').reverse()
         },
         orderId: function(){
-            return _.orderBy(this.units, 'updated_at')
+            return _.orderBy(this.units, 'updated_at').reverse()
         }
     },
 
