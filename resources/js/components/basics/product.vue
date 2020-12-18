@@ -38,11 +38,7 @@
             </tbody>
         </table>
     </div>
-</div>  
-            <div>
-                <pagination :data="laravelData" v-on:pagination-change-page="getResults"></pagination>
-            </div>
-</div>
+
 </template>
 
 <script>
