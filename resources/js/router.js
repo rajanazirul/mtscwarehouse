@@ -9,6 +9,10 @@ Vue.use(Vue2Filters)
 
 import adminbutton from './components/basics/adminbutton.vue'
 import AdminDeduct from './components/basics/AdminDeduct.vue'
+<<<<<<< HEAD
+=======
+import dashboard from './components/basics/dashboard.vue'
+>>>>>>> parent of 01f98db... Merge branch 'test_vue' into main
 
 const routes = [
     //method
@@ -21,6 +25,14 @@ const routes = [
         path: '/dmform/*',
         component: AdminDeduct
     },
+<<<<<<< HEAD
+=======
+
+    {
+        path: '/',
+        component: dashboard
+    }
+>>>>>>> parent of 01f98db... Merge branch 'test_vue' into main
 
 ]
 

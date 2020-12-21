@@ -1,8 +1,13 @@
 <template>
 <div >
-<tr v-for="(tag, i) in tags" :key="i" v-if="tags.length">
-<Button type="info" size="small" @click="showEditModal(tag, i)" >Edit</Button>
-</tr>
+
+<div>
+    <td>
+    <Button type="info" size="small" @click="showEditModal(tags, ids)" >FOR ADMIN</Button>
+    </td>
+</div>
+
+
 <Modal
     v-model="editModal"
     title="Edit tag"
@@ -10,11 +15,11 @@
     :closable="false"
 
     >
-    <Input v-model="editData.status" placeholder="Edit tag name"  />
+    <Input v-model="editData.status" placeholder="Edit ADMIN STATUS"  />
 
     <div slot="footer">
         <Button type="default" @click="editModal=false">Close</Button>
-        <Button href="" type="primary" @click="editTag" :disabled="isAdding" :loading="isAdding">{{isAdding ? 'Editing..' : 'Edit tag'}}</Button>
+        <Button href="" type="primary" @click="editStatus" :disabled="isAdding" :loading="isAdding">{{isAdding ? 'Editing..' : 'FOR ADMIN'}}</Button>
     </div>
 
 </Modal>
@@ -25,19 +30,11 @@
 <script>
 export default {
 
-    /*async created(){
-        const res = await this.callApi('post', '/dmaddreturns/create_tag', {tagName: 'testtag'});
-        console.log(res)
-        if (res.status == 200){
-            //console.log(res)
-        }
-    }*/
     data(){
         return {
             data : {
                 status: ''
             },
-            addModal: false,
             editModal:false,
             isAdding: false, 
             tags : [],
@@ -45,23 +42,16 @@ export default {
 				status: ''
             },
             index : -1, 
+            ids : 0,
         }
     },
     
     methods : {
-        async addTag(){
-            if(this.data.status.trim()=='') return this.e('Tag name is required')
-            const res =await this.callApi('post', '/dmaddreturns/create_tag', this.data)
-            if(res.status===201){
-                this.s('Tag has been added successfully!')
-            }
-        },
-        
-        async editTag(){
+        async editStatus(){
             if(this.editData.status.trim()=='') return this.e('Tag name is required')
-            const res = await this.callApi('post', '/dmaddreturns/create_tag', this.editData)
+            const res = await this.callApi('post', '/dmaddreturns/create_status', this.editData)
             if(res.status===200){
-                this.tags[this.index].status = this.editData.status
+                this.tags.status = this.editData.status
                 this.s('Tag has been edited successfully!')
                 this.editModal = false
                 window.location.reload()
@@ -78,10 +68,10 @@ export default {
             }
         },
 
-        showEditModal(tag, index){
+        showEditModal(tags, index){
 			let obj = {
-				id : tag.id, 
-				status : tag.status
+				id : this.ids, 
+				status : tags.status
 			}
 			this.editData = obj
 			this.editModal = true
@@ -92,14 +82,13 @@ export default {
 
     async created(){
         const res =await this.callApi('get', '/api/dmaddreturns/get_tag')
+        this.ids = this.$route.params.pathMatch 
         if(res.status == 200){
             this.tags  = res.data
         }else{
             this.swr()
         }
     }
-
-
 
 }
 </script>

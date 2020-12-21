@@ -3,10 +3,10 @@
 @section('content')
     @include('alerts.success')
     <div>
-    <div id = "dashboard" class="row">
+    <div class="row">
         <div class="card ">
             <div class="card-header">
-            <div class="row">
+                <div class="row">
                     <div class="col-8">
                         <h4 class="card-title">Add and Returns DM Form</h4>
                     </div>
@@ -19,18 +19,18 @@
                 <div class="">
                     <table class="table">
                         <thead>
+                            <th>DM</th>
                             <th>Date</th>
                             <th>Purpose</th>
-                            <th>DO No.</th>
-                            <th>Inv No.</th>
-                            <th>Product</th>
-                            <th>Stock</th>
+                            <th>User</th>
                             <th>Status</th>
                             <th></th>
                         </thead>
                         <tbody>
-                            @foreach ($dmaddreturns as $dmaddreturn)
+                            @foreach ($dmaddreturns->sortByDesc('created_at') as $dmaddreturn)
                                 <tr>
+                                    <td>DM/20/A00{{$dmaddreturn->id}}</td>
+
                                     <td>{{ date('d-m-y', strtotime($dmaddreturn->created_at)) }}</td>
                                     
                                     <td>
@@ -40,15 +40,12 @@
                                             N/A
                                         @endif
                                     </td>
-                                    <td style="max-width:150px">{{ $dmaddreturn->dono }}</td>
-                                    <td style="max-width:150px">{{ $dmaddreturn->invno }}</td>
-                                    <td>{{ $dmaddreturn->products->count() }}</td>
-                                    <td>{{ $dmaddreturn->products->sum('stock') }}</td>
+                                    <td>{{ $dmaddreturn->user->name }}</td>
                                     <td>
                                         @if($dmaddreturn->status)
                                             {{$dmaddreturn->status}}
                                         @elseif($dmaddreturn->finalized_at)
-                                            <span style="color:red; font-weight:bold;">PASS</span>
+                                            <span style="color:red; font-weight:bold;">PENDING ADMIN</span>
                                         @else
                                             <span style="color:red; font-weight:bold;">TO FINALIZE</span>
                                         @endif
@@ -63,14 +60,13 @@
                                                 <i class="tim-icons icon-pencil"></i>
                                             </a>
                                         @endif
-                                        <form action="{{ route('dmaddreturns.destroy', $dmaddreturn) }}" method="post" class="d-inline">
+                                        <!--<form action="{{ route('dmaddreturns.destroy', $dmaddreturn) }}" method="post" class="d-inline">
                                             @csrf
                                             @method('delete')
                                             <button type="button" class="btn btn-link" data-toggle="tooltip" data-placement="bottom" title="Delete DM" onclick="confirm('Are you confirm to delete this?') ? this.parentElement.submit() : ''">
                                                 <i class="tim-icons icon-simple-remove"></i>
                                             </button>
-                                        </form>
-                                        <mainapp></mainapp>
+                                        </form>-->
                                     </td>
                                 </tr>
                             @endforeach
@@ -78,7 +74,6 @@
                     </table>
                 </div>
             </div>
-            
             <div class="card-footer py-4">
                 <nav class="d-flex justify-content-end" aria-label="...">
                     {{ $dmaddreturns->links() }}
@@ -86,7 +81,5 @@
             </div>
         </div>
     </div>
-    <script src="{{mix('/js/app.js')}}"></script>
     </div>
 @endsection
-
