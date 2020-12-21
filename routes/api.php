@@ -30,7 +30,6 @@ Route::get('updateon/{id}', 'TriggerController@triggerUpdateOn');
 Route::get('dmaddreturns/get_tag', 'DashboardController@getStatus');
 
 Route::get('dmform/getdeduct', 'DashboardController@getDeduct');
-<<<<<<< HEAD
 
 Route::get('/search_dmform', 'DashboardController@searchDmform');
 
@@ -41,5 +40,3 @@ Route::get('get_product', 'DashboardController@getProduct');
 Route::get('search_product', 'DashboardController@searchProduct');
 
 Route::get('search_part', 'DashboardController@searchPart');
-=======
->>>>>>> parent of 01f98db... Merge branch 'test_vue' into main
