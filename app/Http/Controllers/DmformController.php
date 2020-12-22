@@ -9,6 +9,7 @@ use App\Dmform;
 use App\Product;
 use Carbon\Carbon;
 use App\TakenProduct;
+use App\Trigger;
 use Illuminate\Http\Request;
 
 class DmformController extends Controller
@@ -135,6 +136,7 @@ class DmformController extends Controller
             ]);
         }
 
+        Trigger::where('id', '1')->update([ 'value' => '1', ]);
         $dmform->total_qty = $dmform->products->sum('total_qty');
         $dmform->finalized_at = Carbon::now()->toDateTimeString();
         $dmform->save();

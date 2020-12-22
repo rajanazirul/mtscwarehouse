@@ -9,6 +9,7 @@ use App\Purpose;
 use App\Product;
 use Carbon\Carbon;
 use App\AddreturnProduct;
+use App\Trigger;
 use Illuminate\Http\Request;
 
 class DmaddreturnController extends Controller
@@ -129,6 +130,7 @@ class DmaddreturnController extends Controller
             ]);
         }
 
+        Trigger::where('id', '1')->update([ 'value' => '1', ]);
         return back()->withStatus('DM successfully completed.');
     }
 
