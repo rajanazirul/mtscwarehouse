@@ -136,7 +136,7 @@ class DmformController extends Controller
             ]);
         }
 
-        Trigger::where('id', '1')->update([ 'value' => '1', ]);
+        Trigger::where('id', '1')->update([ 'value' => '0', ]);
         $dmform->total_qty = $dmform->products->sum('total_qty');
         $dmform->finalized_at = Carbon::now()->toDateTimeString();
         $dmform->save();

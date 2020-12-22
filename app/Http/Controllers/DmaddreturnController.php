@@ -130,7 +130,7 @@ class DmaddreturnController extends Controller
             ]);
         }
 
-        Trigger::where('id', '1')->update([ 'value' => '1', ]);
+        Trigger::where('id', '1')->update([ 'value' => '0', ]);
         return back()->withStatus('DM successfully completed.');
     }
 
