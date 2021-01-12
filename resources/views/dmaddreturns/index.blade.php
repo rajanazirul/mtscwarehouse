@@ -29,7 +29,7 @@
                         <tbody>
                             @foreach ($dmaddreturns->sortByDesc('created_at') as $dmaddreturn)
                                 <tr>
-                                    <td>DM/20/A00{{$dmaddreturn->id}}</td>
+                                    <td>DM/{{ date('y', strtotime($dmaddreturn->created_at)) }}/A00{{$dmaddreturn->id}}</td>
 
                                     <td>{{ date('d-m-y', strtotime($dmaddreturn->created_at)) }}</td>
                                     

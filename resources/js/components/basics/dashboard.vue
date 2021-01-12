@@ -20,7 +20,7 @@
             </thead>
             <tbody>
                 <tr v-for="(tag, i) in orderTags" :key="i" v-if="search == ''" >
-                    <td>DM/20/A00{{tag.id}}</td>
+                    <td>DM/{{tag.finalized_at.slice(2,4)}}/A00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
                     
@@ -32,7 +32,7 @@
                     </td>
                 </tr>
                 <tr v-for="(tag, i) in orderId" :key="i" v-if="search != ''">
-                    <td>DM/20/A00{{tag.id}}</td>
+                    <td>DM/{{tag.finalized_at.slice(2,4)}}/A00{{tag.id}}</td>
                     <td>{{tag.finalized_at}}</td>
                     <td v-if="tag.status == null" style="font-weight:bold;">PENDING ADMIN</td>
                     <td v-if="tag.status !== null">{{tag.status}}</td>

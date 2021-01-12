@@ -11,7 +11,7 @@
                     <div class="row">
                         <div class="col-8">
                             <h3 class="card-title">DM SUMMARY</h3>
-                            <h4 class="card-title">DM/20/A00{{$dmaddreturn->id}}</h4>
+                            <h4 class="card-title">DM/{{ date('y', strtotime($dmaddreturn->created_at)) }}/A00{{$dmaddreturn->id}}</h4>
                             <mainapp></mainapp>
                         </div>
                         @if (!$dmaddreturn->finalized_at)

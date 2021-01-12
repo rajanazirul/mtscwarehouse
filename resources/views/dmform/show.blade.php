@@ -10,7 +10,7 @@
                     <div class="row">
                         <div class="col-8">
                             <h3 class="card-title">DM SUMMARY</h3>
-                            <h4 class="card-title">DM/20/D00{{$dmform->id}}</h4>
+                            <h4 class="card-title">DM/{{ date('y', strtotime($dmform->created_at)) }}/D00{{$dmform->id}}</h4>
                             <mainapp></mainapp>
                         </div>
                         @if (!$dmform->finalized_at)
